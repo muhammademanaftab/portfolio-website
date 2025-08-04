@@ -55,288 +55,364 @@ import {
   Server as Backend,
   Monitor as Frontend,
   Shield as Security,
-  Target as Specialized
+  Target as Specialized,
+  // Enhanced icons for better visual appeal
+  Code as CodeIcon,
+  Cpu as CpuIcon,
+  Database as DatabaseIcon,
+  Server as ServerIcon,
+  Monitor as MonitorIcon,
+  Smartphone as SmartphoneIcon,
+  Globe as GlobeIcon,
+  Shield as ShieldIcon,
+  Target as TargetIcon,
+  Users as UsersIcon,
+  TrendingUp as TrendingUpIcon,
+  Star as StarIcon,
+  Zap as ZapIcon,
+  Heart as HeartIcon,
+  Sparkles as SparklesIcon,
+  Briefcase as BriefcaseIcon,
+  GraduationCap as GraduationCapIcon,
+  BookOpen as BookOpenIcon,
+  Mail as MailIcon,
+  Phone as PhoneIcon,
+  Github as GithubIcon,
+  Linkedin as LinkedinIcon,
+  Download as DownloadIcon,
+  ExternalLink as ExternalLinkIcon,
+  MessageCircle as MessageCircleIcon,
+  Send as SendIcon,
+  FileText as FileTextIcon,
+  Layers as LayersIcon,
+  Palette as PaletteIcon,
+  Terminal as TerminalIcon,
+  Box as BoxIcon,
+  Package as PackageIcon,
+  Settings as SettingsIcon,
+  Wrench as WrenchIcon,
+  Rocket as RocketIcon,
+  Lightbulb as LightbulbIcon,
+  Brain as BrainIcon,
+  Network as NetworkIcon,
+  Lock as LockIcon,
+  Eye as EyeIcon,
+  // Additional modern icons
+  Activity,
+  BarChart3,
+  Bot,
+  Cloud,
+  Command,
+  Cpu as CpuModern,
+  Database as DatabaseModern,
+  Globe as GlobeModern,
+  Layers as LayersModern,
+  Monitor as MonitorModern,
+  Palette as PaletteModern,
+  Rocket as RocketModern,
+  Shield as ShieldModern,
+  Smartphone as SmartphoneModern,
+  Star as StarModern,
+  Target as TargetModern,
+  TrendingUp as TrendingUpModern,
+  Users as UsersModern,
+  Zap as ZapModern,
+  Code as CodeModern,
+  Terminal as TerminalModern,
+  Box as BoxModern,
+  Package as PackageModern,
+  Settings as SettingsModern,
+  Wrench as WrenchModern,
+  Lightbulb as LightbulbModern,
+  Brain as BrainModern,
+  Network as NetworkModern,
+  Lock as LockModern,
+  Eye as EyeModern,
+  Globe as GlobeModern2,
+  Database as DatabaseModern2,
+  Server as ServerModern,
+  Monitor as MonitorModern2,
+  Smartphone as SmartphoneModern2,
+  Shield as ShieldModern2,
+  Target as TargetModern2,
+  Users as UsersModern2,
+  TrendingUp as TrendingUpModern2,
+  Star as StarModern2,
+  Zap as ZapModern2,
+  Code as CodeModern2,
+  Cpu as CpuModern2,
+  Terminal as TerminalModern2,
+  Box as BoxModern2,
+  Package as PackageModern2,
+  Settings as SettingsModern2,
+  Wrench as WrenchModern2,
+  Rocket as RocketModern2,
+  Lightbulb as LightbulbModern2,
+  Brain as BrainModern2,
+  Network as NetworkModern2,
+  Lock as LockModern2,
+  Eye as EyeModern2,
+  Globe as GlobeModern3,
+  Database as DatabaseModern3,
+  Server as ServerModern2,
+  Monitor as MonitorModern3,
+  Smartphone as SmartphoneModern3,
+  Shield as ShieldModern3,
+  Target as TargetModern3,
+  Users as UsersModern3,
+  TrendingUp as TrendingUpModern3,
+  Star as StarModern3,
+  Zap as ZapModern3,
+  Code as CodeModern3,
+  Cpu as CpuModern3,
+  Terminal as TerminalModern3,
+  Box as BoxModern3,
+  Package as PackageModern3,
+  Settings as SettingsModern3,
+  Wrench as WrenchModern3,
+  Rocket as RocketModern3,
+  Lightbulb as LightbulbModern3,
+  Brain as BrainModern3,
+  Network as NetworkModern3,
+  Lock as LockModern3,
+  Eye as EyeModern3
 } from 'lucide-react';
 
-// API Base URL
-const API_BASE_URL = 'http://localhost:8000/api';
-
-// Types for API responses
-interface PersonalInfo {
-  name: string;
-  title: string;
-  location: string;
-  email: string;
-  phone: string;
-  github: string;
-  linkedin: string;
-  about: string[];
-}
-
-interface QuickFacts {
-  education: string;
-  experience: string;
-  projects: string;
-  certifications: string;
-}
-
-interface Education {
-  degree: string;
-  institution: string;
-  period: string;
-  scholarship: string;
-  coursework: string[];
-}
-
-interface Experience {
-  title: string;
-  company: string;
-  period: string;
-  responsibilities: string[];
-}
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tech: string[];
-  features: string[];
-  icon: string;
-  icon_color: string;
-}
-
-interface Skills {
-  [category: string]: string[];
-}
-
-interface Contact {
-  email: {
-    address: string;
-    icon: string;
-    color: string;
-    label: string;
-  };
-  phone: {
-    number: string;
-    icon: string;
-    color: string;
-    label: string;
-  };
-  github: {
-    username: string;
-    url: string;
-    icon: string;
-    color: string;
-    label: string;
-  };
-  linkedin: {
-    username: string;
-    url: string;
-    icon: string;
-    color: string;
-    label: string;
-  };
-}
+// Static portfolio data
+const portfolioData = {
+  personalInfo: {
+    name: 'Muhammad Eman Aftab',
+    title: 'Computer Science Student & Full-Stack Developer',
+    location: 'Budapest, Hungary',
+    email: 'emanaftab2022@gmail.com',
+    phone: '+36202526795',
+    github: 'muhammademanaftab',
+    linkedin: 'muhammademanaftab',
+    about: [
+      'I am a passionate Computer Science student at Budapest University of Technology and Economics, specializing in full-stack development and modern web technologies.',
+      'With a strong foundation in both frontend and backend development, I enjoy creating responsive, user-friendly applications that solve real-world problems.',
+      'I am constantly learning and exploring new technologies, with a particular interest in React, Laravel, and modern development practices.'
+    ]
+  },
+  quickFacts: {
+    education: 'BSc Computer Science',
+    experience: '2+ Years',
+    projects: '10+ Projects',
+    certifications: '12+ Certifications'
+  },
+  education: {
+    degree: 'Bachelor of Science in Computer Science',
+    institution: 'Budapest University of Technology and Economics',
+    period: '2022 - 2026',
+    scholarship: 'Stipendium Hungaricum Scholarship (100%)',
+    coursework: [
+      'Data Structures & Algorithms',
+      'Object-Oriented Programming',
+      'Database Management Systems',
+      'Web Development',
+      'Software Engineering',
+      'Computer Networks'
+    ]
+  },
+  experience: {
+    title: 'Full-Stack Developer',
+    company: 'Freelance & Personal Projects',
+    period: '2022 - Present',
+    responsibilities: [
+      'Developed responsive web applications using React, Laravel, and modern technologies',
+      'Implemented RESTful APIs and database design with SQLite and MySQL',
+      'Created user-friendly interfaces with TailwindCSS and Bootstrap',
+      'Deployed applications using Docker, Vercel, and various cloud platforms',
+      'Collaborated with clients to understand requirements and deliver solutions'
+    ]
+  },
+  projects: [
+    {
+      id: 1,
+      title: 'Pet Catalogue - React & Laravel Web App',
+      description: 'Full-stack web application for cataloguing and managing pets with CRUD capabilities, birth/death tracking, and dynamic statistics.',
+      tech: ['React', 'Laravel', 'TailwindCSS', 'SQLite', 'Laravel Blade'],
+      features: ['Full CRUD Operations', 'Dynamic Statistics', 'Clean UI/UX'],
+      icon: 'code',
+      icon_color: 'green'
+    },
+    {
+      id: 2,
+      title: 'Laravel LMS - Learning Management System',
+      description: 'Comprehensive learning platform with role-based dashboards for teachers and students, featuring task management and secure authentication.',
+      tech: ['Laravel 12', 'SQLite', 'TailwindCSS', 'PHP', 'Laravel Breeze'],
+      features: ['Role-based Dashboards', 'Task Assignment', 'Secure Authentication'],
+      icon: 'users',
+      icon_color: 'blue'
+    },
+    {
+      id: 3,
+      title: 'Task Manager Pro',
+      description: 'Flask-based productivity application with priority filtering, due date tracking, and real-time reminders.',
+      tech: ['Flask', 'Python', 'SQLite', 'Bootstrap', 'HTML/CSS'],
+      features: ['Priority Filtering', 'Due Date Tracking', 'Real-time Reminders'],
+      icon: 'zap',
+      icon_color: 'yellow'
+    },
+    {
+      id: 4,
+      title: 'Atmospheric Layer Simulation',
+      description: 'Advanced OOP simulation of atmospheric layer interactions using design patterns for modularity and scalability.',
+      tech: ['C#', 'OOP', 'Design Patterns', 'Unit Testing'],
+      features: ['Visitor Pattern', 'Singleton Pattern', 'Modular Design'],
+      icon: 'trendingUp',
+      icon_color: 'purple'
+    },
+    {
+      id: 5,
+      title: 'Java Board Game Simulation',
+      description: 'Custom board game with dynamic movement logic, comprehensive player management, and extensive unit testing.',
+      tech: ['Java', 'Swing', 'JUnit 5'],
+      features: ['Dynamic Movement', 'Score Management', 'Unit Tested'],
+      icon: 'star',
+      icon_color: 'orange'
+    },
+    {
+      id: 6,
+      title: 'Vlera AI - Static Website',
+      description: 'Responsive informational website showcasing AI assistant applications and impact.',
+      tech: ['HTML5', 'CSS', 'Bootstrap'],
+      features: ['Responsive Design', 'Modern UI', 'AI Focus'],
+      icon: 'cpu',
+      icon_color: 'cyan'
+    }
+  ],
+  skills: {
+    'Programming Languages': ['Java', 'Python', 'C', 'C#', 'C++', 'SQL', 'JavaScript', 'HTML', 'CSS', 'PHP', 'Clean', 'Haskell'],
+    'Frontend Development': ['React', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'HTML5', 'CSS3', 'Responsive Design'],
+    'Backend Development': ['Laravel', 'Flask', 'Node.js', 'PHP', 'REST APIs', 'Microservices'],
+    'Database & Storage': ['SQLite', 'SQL', 'DBMS', 'File Handling'],
+    'DevOps & Tools': ['Docker', 'Kubernetes', 'Helm', 'Linux', 'Git', 'GitHub'],
+    'Specialized Areas': ['Networking', 'Cryptography & Security', 'Computer Graphics', 'Game Development', 'Robot Framework']
+  },
+  certifications: [
+    'Stipendium Hungaricum Scholarship (100%)',
+    'React JS – Meta',
+    'React Basics & Advanced',
+    'Unsupervised Learning, Recommenders, Reinforcement Learning – Stanford Online',
+    'Introduction to Containers w/ Docker, Kubernetes & OpenShift – IBM',
+    'Java (Basic) – HackerRank',
+    'REST API (Intermediate) – HackerRank',
+    'SQL (Intermediate) – HackerRank',
+    'C# (Basic) – HackerRank',
+    'Crash Course on Python – Coursera',
+    'Introduction to Git and GitHub – Coursera',
+    'Web Design: Strategy and Information Architecture – Coursera'
+  ],
+  contact: {
+    email: {
+      address: 'emanaftab2022@gmail.com',
+      icon: 'mail',
+      color: 'purple',
+      label: 'Email Me'
+    },
+    phone: {
+      number: '+36202526795',
+      icon: 'phone',
+      color: 'green',
+      label: 'Call Me'
+    },
+    github: {
+      username: 'muhammademanaftab',
+      url: 'https://github.com/muhammademanaftab',
+      icon: 'github',
+      color: 'gray',
+      label: 'GitHub'
+    },
+    linkedin: {
+      username: 'muhammademanaftab',
+      url: 'https://linkedin.com/in/muhammademanaftab',
+      icon: 'linkedin',
+      color: 'blue',
+      label: 'LinkedIn'
+    }
+  }
+};
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [portfolioData, setPortfolioData] = useState<{
-    personalInfo?: PersonalInfo;
-    quickFacts?: QuickFacts;
-    education?: Education;
-    experience?: Experience;
-    projects?: Project[];
-    skills?: Skills;
-    certifications?: string[];
-    contact?: Contact;
-  }>({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  // Fetch all portfolio data
   useEffect(() => {
-    const fetchPortfolioData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        // Fetch all data in parallel
-        const [
-          overviewResponse,
-          educationResponse,
-          experienceResponse,
-          projectsResponse,
-          skillsResponse,
-          certificationsResponse,
-          contactResponse
-        ] = await Promise.all([
-          fetch(`${API_BASE_URL}/portfolio/overview`),
-          fetch(`${API_BASE_URL}/portfolio/education`),
-          fetch(`${API_BASE_URL}/portfolio/experience`),
-          fetch(`${API_BASE_URL}/portfolio/projects`),
-          fetch(`${API_BASE_URL}/portfolio/skills`),
-          fetch(`${API_BASE_URL}/portfolio/certifications`),
-          fetch(`${API_BASE_URL}/portfolio/contact`)
-        ]);
-
-        // Check if all requests were successful
-        const responses = [
-          overviewResponse,
-          educationResponse,
-          experienceResponse,
-          projectsResponse,
-          skillsResponse,
-          certificationsResponse,
-          contactResponse
-        ];
-
-        const failedResponses = responses.filter(response => !response.ok);
-        if (failedResponses.length > 0) {
-          throw new Error(`Failed to fetch data: ${failedResponses.length} requests failed`);
-        }
-
-        // Parse all responses
-        const [
-          overviewData,
-          educationData,
-          experienceData,
-          projectsData,
-          skillsData,
-          certificationsData,
-          contactData
-        ] = await Promise.all([
-          overviewResponse.json(),
-          educationResponse.json(),
-          experienceResponse.json(),
-          projectsResponse.json(),
-          skillsResponse.json(),
-          certificationsResponse.json(),
-          contactResponse.json()
-        ]);
-
-        setPortfolioData({
-          personalInfo: overviewData.personal_info,
-          quickFacts: overviewData.quick_facts,
-          education: educationData.education,
-          experience: experienceData.experience,
-          projects: projectsData.projects,
-          skills: skillsData.skills,
-          certifications: certificationsData.certifications,
-          contact: contactData.contact
-        });
-
-        setIsLoaded(true);
-      } catch (err) {
-        console.error('Error fetching portfolio data:', err);
-        setError(err instanceof Error ? err.message : 'Failed to load portfolio data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPortfolioData();
+    setIsLoaded(true);
   }, []);
-
-  // Loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-purple-500 mx-auto"></div>
-          <p className="text-white mt-4 text-lg">Loading portfolio...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Error state
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-red-500 text-6xl mb-4">⚠️</div>
-          <h2 className="text-white text-2xl mb-2">Error Loading Portfolio</h2>
-          <p className="text-gray-300 mb-4">{error}</p>
-          <p className="text-gray-400 text-sm">
-            Make sure the Laravel backend is running on http://localhost:8000
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   // Get icon component by name with better mapping for projects
   const getProjectIcon = (iconName: string) => {
     const projectIcons: { [key: string]: any } = {
-      'code': Code2,
-      'users': Users,
-      'zap': Zap,
-      'trendingUp': TrendingUp,
-      'star': Star,
-      'cpu': Chip,
-      'web': Web,
-      'mobile': Mobile,
-      'database': Database,
-      'server': Server,
-      'frontend': Monitor,
-      'backend': Backend,
-      'fullstack': Code,
-      'ai': Brain,
-      'game': Target,
-      'security': Lock,
-      'ui': Palette,
-      'api': Terminal,
-      'cloud': Globe,
-      'devops': Settings
+      'code': CodeModern,
+      'users': UsersModern,
+      'zap': ZapModern,
+      'trendingUp': TrendingUpModern,
+      'star': StarModern,
+      'cpu': CpuModern,
+      'web': GlobeModern,
+      'mobile': SmartphoneModern,
+      'database': DatabaseModern,
+      'server': ServerModern,
+      'frontend': MonitorModern,
+      'backend': ServerModern,
+      'fullstack': CodeModern,
+      'ai': BrainModern,
+      'game': TargetModern,
+      'security': LockModern,
+      'ui': PaletteModern,
+      'api': TerminalModern,
+      'cloud': Cloud,
+      'devops': SettingsModern
     };
-    return projectIcons[iconName] || Code2;
+    return projectIcons[iconName] || CodeModern;
   };
 
   // Get icon component by name with better mapping
   const getIcon = (iconName: string) => {
     const icons: { [key: string]: any } = {
-      star: Star,
-      zap: Zap,
-      users: Users,
-      trendingUp: TrendingUp,
-      code: Code,
-      cpu: Cpu,
-      mail: Mail,
-      phone: Phone,
-      github: Github,
-      linkedin: Linkedin,
-      download: Download,
-      externalLink: ExternalLink,
-      heart: Heart,
-      sparkles: Sparkles,
-      target: Target,
-      globe: Globe,
-      briefcase: Briefcase,
-      graduationCap: GraduationCap,
-      bookOpen: BookOpen,
-      shield: Shield,
-      database: Database,
-      server: Server,
-      monitor: Monitor,
-      smartphone: Smartphone,
-      globe2: Globe2,
-      messageCircle: MessageCircle,
-      send: Send
+      star: StarModern,
+      zap: ZapModern,
+      users: UsersModern,
+      trendingUp: TrendingUpModern,
+      code: CodeModern,
+      cpu: CpuModern,
+      mail: MailIcon,
+      phone: PhoneIcon,
+      github: GithubIcon,
+      linkedin: LinkedinIcon,
+      download: DownloadIcon,
+      externalLink: ExternalLinkIcon,
+      heart: HeartIcon,
+      sparkles: SparklesIcon,
+      target: TargetModern,
+      globe: GlobeModern,
+      briefcase: BriefcaseIcon,
+      graduationCap: GraduationCapIcon,
+      bookOpen: BookOpenIcon,
+      shield: ShieldModern,
+      database: DatabaseModern,
+      server: ServerModern,
+      monitor: MonitorModern,
+      smartphone: SmartphoneModern,
+      globe2: GlobeModern2,
+      messageCircle: MessageCircleIcon,
+      send: SendIcon
     };
-    return icons[iconName] || Code;
+    return icons[iconName] || CodeModern;
   };
 
   // Get skill category icon
   const getSkillCategoryIcon = (category: string) => {
     const categoryIcons: { [key: string]: any } = {
-      'Programming Languages': Code,
-      'Frontend Development': Monitor,
-      'Backend Development': Server,
-      'Database & Storage': Database,
-      'DevOps & Tools': Shield,
-      'Specialized Areas': Target
+      'Programming Languages': CodeModern,
+      'Frontend Development': MonitorModern,
+      'Backend Development': ServerModern,
+      'Database & Storage': DatabaseModern,
+      'DevOps & Tools': ShieldModern,
+      'Specialized Areas': TargetModern
     };
-    return categoryIcons[category] || Code;
+    return categoryIcons[category] || CodeModern;
   };
 
   return (
@@ -352,10 +428,10 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 glass-dark backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="gradient-text text-xl font-bold flex items-center gap-2">
-              <Code className="w-6 h-6" />
-              Portfolio
-            </div>
+                         <div className="gradient-text text-xl font-bold flex items-center gap-2">
+               <CodeModern className="w-6 h-6" />
+               Portfolio
+             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#about" className="text-white hover:text-purple-400 transition-colors relative group">
                 About
@@ -400,9 +476,9 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mb-8">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-glow">
-                <Code className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white" />
-              </div>
+                             <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-glow">
+                 <CodeModern className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white" />
+               </div>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold gradient-text mb-6 animate-slide-in">
               {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}
@@ -467,8 +543,8 @@ function App() {
             Education
           </h2>
           <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
-            <div className="flex items-start gap-4 mb-6">
-              <GraduationCap className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+                         <div className="flex items-start gap-4 mb-6">
+               <GraduationCapIcon className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
                   {portfolioData.education?.degree}
@@ -507,8 +583,8 @@ function App() {
             Experience
           </h2>
           <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
-            <div className="flex items-start gap-4 mb-6">
-              <Briefcase className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+                         <div className="flex items-start gap-4 mb-6">
+               <BriefcaseIcon className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
                   {portfolioData.experience?.title}
@@ -544,10 +620,10 @@ function App() {
               const IconComponent = getProjectIcon(project.icon);
               return (
                 <div key={project.id} className="glass hover-lift p-6 sm:p-8 rounded-2xl">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center`}>
-                      <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                    </div>
+                                     <div className="flex items-center gap-4 mb-4">
+                     <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-glow`}>
+                       <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                     </div>
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                       {project.title}
                     </h3>
@@ -596,10 +672,10 @@ function App() {
               const CategoryIcon = getSkillCategoryIcon(category);
               return (
                 <div key={category} className="glass hover-lift p-6 sm:p-8 rounded-2xl">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                      <CategoryIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                    </div>
+                                     <div className="flex items-center gap-3 mb-6">
+                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-pulse">
+                       <CategoryIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                     </div>
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                       {category}
                     </h3>
@@ -654,22 +730,23 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {portfolioData.contact && Object.entries(portfolioData.contact).map(([key, contact]) => {
               const IconComponent = getIcon(contact.icon);
+              const contactData = contact as any; // Type assertion to handle different contact types
               return (
                 <a
                   key={key}
-                  href={key === 'email' ? `mailto:${contact.address}` : key === 'phone' ? `tel:${contact.number}` : contact.url}
+                  href={key === 'email' ? `mailto:${contactData.address}` : key === 'phone' ? `tel:${contactData.number}` : contactData.url}
                   target={key === 'email' || key === 'phone' ? undefined : '_blank'}
                   rel={key === 'email' || key === 'phone' ? undefined : 'noopener noreferrer'}
                   className="glass hover-lift p-6 rounded-2xl text-center group transition-all duration-300"
                 >
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-${contact.color}-500 to-${contact.color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                  </div>
+                                     <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-${contact.color}-500 to-${contact.color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-bounce`}>
+                     <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                   </div>
                   <h3 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">
                     {contact.label}
                   </h3>
                   <p className="text-gray-300 text-xs sm:text-sm md:text-base">
-                    {key === 'email' ? contact.address : key === 'phone' ? contact.number : contact.username}
+                    {key === 'email' ? contactData.address : key === 'phone' ? contactData.number : contactData.username}
                   </p>
                 </a>
               );
@@ -683,7 +760,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-gray-400 font-mono text-sm sm:text-base">
-              © 2024 {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}. Built with React & Laravel.
+              © 2024 {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}. Built with React & TypeScript.
             </p>
           </div>
         </div>

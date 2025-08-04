@@ -114,6 +114,61 @@ body {
   animation: fadeIn 0.8s ease-out;
 }
 
+/* Enhanced Icon Animations */
+.icon-pulse {
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+.icon-rotate {
+  animation: iconRotate 3s linear infinite;
+}
+
+.icon-bounce {
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+.icon-glow {
+  animation: iconGlow 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes iconRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes iconGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+}
+
 /* Glass Effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);
