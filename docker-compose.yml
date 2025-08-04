@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: .
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./public/resume.pdf:/usr/share/nginx/html/resume.pdf:ro
+
+  # Development service (optional)
+  portfolio-dev:
+    build: .
+    ports:
+      - "3001:80"
+    volumes:
+      - ./src:/app/src:ro
+      - ./public:/app/public:ro
+    profiles:
+      - dev 
