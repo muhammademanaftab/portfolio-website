@@ -114,7 +114,7 @@ const Portfolio = () => {
       <nav className="fixed top-0 w-full glass-dark z-50 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold gradient-text">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold gradient-text truncate">
               Muhammad Eman Aftab
             </div>
             
@@ -138,8 +138,9 @@ const Portfolio = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="md:hidden p-3 rounded-lg hover:bg-white/10 transition-colors touch-manipulation"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle mobile menu"
             >
               <div className="w-6 h-6 flex flex-col justify-center">
                 <span className={`bg-white block h-0.5 w-6 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
@@ -156,7 +157,7 @@ const Portfolio = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left py-2 hover:text-purple-400 transition-colors"
+                  className="block w-full text-left py-3 px-4 hover:text-purple-400 hover:bg-white/5 transition-colors touch-manipulation rounded-lg"
                 >
                   {item}
                 </button>
@@ -169,86 +170,89 @@ const Portfolio = () => {
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div className="max-w-6xl mx-auto text-center px-4 relative z-10">
-          <div className="mb-12 animate-slide-in">
-            <div className="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 flex items-center justify-center animate-glow">
-              <Code size={64} className="text-white" />
+          <div className="mb-8 sm:mb-12 animate-slide-in">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 flex items-center justify-center animate-glow">
+              <Code size={32} className="sm:w-12 sm:h-12 md:w-16 md:h-16 text-white" />
             </div>
-            <h1 className="text-7xl md:text-9xl font-black mb-6 gradient-text leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-4 sm:mb-6 gradient-text leading-tight px-2">
               Muhammad Eman Aftab
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">Computer Science Student & Full-Stack Developer</p>
-            <p className="text-lg text-gray-400 mb-12 font-mono">Budapest, Hungary</p>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-3 sm:mb-4 font-light px-4">Computer Science Student & Full-Stack Developer</p>
+            <p className="text-base sm:text-lg text-gray-400 mb-8 sm:mb-12 font-mono">Budapest, Hungary</p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 mb-16">
-            <a href="mailto:emanaftab2022@gmail.com" className="btn-secondary flex items-center gap-3 hover-lift">
-              <Mail size={20} />
-              Email Me
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16 px-2">
+            <a href="mailto:emanaftab2022@gmail.com" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
+              <Mail size={16} className="sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Email Me</span>
+              <span className="sm:hidden">Email</span>
             </a>
-            <a href="tel:+36202526795" className="btn-secondary flex items-center gap-3 hover-lift">
-              <Phone size={20} />
-              Call Me
+            <a href="tel:+36202526795" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
+              <Phone size={16} className="sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Call Me</span>
+              <span className="sm:hidden">Call</span>
             </a>
-            <a href="https://github.com/muhammademanaftab" className="btn-secondary flex items-center gap-3 hover-lift">
-              <Github size={20} />
+            <a href="https://github.com/muhammademanaftab" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
+              <Github size={16} className="sm:w-5 sm:h-5" />
               GitHub
             </a>
-            <a href="https://linkedin.com/in/muhammademanaftab" className="btn-secondary flex items-center gap-3 hover-lift">
-              <Linkedin size={20} />
+            <a href="https://linkedin.com/in/muhammademanaftab" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
+              <Linkedin size={16} className="sm:w-5 sm:h-5" />
               LinkedIn
             </a>
           </div>
 
           <button
             onClick={() => scrollToSection('about')}
-            className="animate-bounce"
+            className="animate-bounce touch-manipulation"
+            aria-label="Scroll to about section"
           >
-            <ChevronDown size={40} className="text-purple-400" />
+            <ChevronDown size={32} className="sm:w-10 sm:h-10 text-purple-400" />
           </button>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-4 pt-32">
+      <section id="about" className="py-16 sm:py-20 md:py-24 px-4 pt-32">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold text-center mb-20 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 md:mb-20 gradient-text px-4">
             About Me
           </h2>
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <p className="text-xl text-gray-300 leading-relaxed">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
+            <div className="space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
                 I'm a passionate Computer Science student at Eötvös Loránd University (ELTE) in Budapest, Hungary, 
                 with a strong foundation in full-stack development and software engineering. Currently pursuing my 
                 Bachelor's degree, I combine academic excellence with practical experience in modern web technologies.
               </p>
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
                 As a Student Mentor at HÖOK, I help international students navigate their academic journey while 
                 continuously expanding my technical expertise through diverse projects ranging from web applications 
                 to system simulations.
               </p>
-              <div className="flex items-center gap-4 text-gray-400">
-                <MapPin size={24} />
-                <span className="font-mono">Budapest, Hungary</span>
+              <div className="flex items-center gap-3 sm:gap-4 text-gray-400">
+                <MapPin size={20} className="sm:w-6 sm:h-6" />
+                <span className="font-mono text-sm sm:text-base">Budapest, Hungary</span>
               </div>
             </div>
-            <div className="glass rounded-3xl p-8 hover-lift">
-              <h3 className="text-2xl font-bold mb-8 gradient-text-secondary">Quick Facts</h3>
-              <div className="space-y-6">
+            <div className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover-lift">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 gradient-text-secondary">Quick Facts</h3>
+              <div className="space-y-4 sm:space-y-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Education</span>
-                  <span className="text-white font-semibold">CS @ ELTE</span>
+                  <span className="text-gray-400 text-sm sm:text-base">Education</span>
+                  <span className="text-white font-semibold text-sm sm:text-base">CS @ ELTE</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Experience</span>
-                  <span className="text-white font-semibold">Student Mentor</span>
+                  <span className="text-gray-400 text-sm sm:text-base">Experience</span>
+                  <span className="text-white font-semibold text-sm sm:text-base">Student Mentor</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Projects</span>
-                  <span className="text-white font-semibold">8+ Completed</span>
+                  <span className="text-gray-400 text-sm sm:text-base">Projects</span>
+                  <span className="text-white font-semibold text-sm sm:text-base">8+ Completed</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Certifications</span>
-                  <span className="text-white font-semibold">12+ Earned</span>
+                  <span className="text-gray-400 text-sm sm:text-base">Certifications</span>
+                  <span className="text-white font-semibold text-sm sm:text-base">12+ Earned</span>
                 </div>
               </div>
             </div>
@@ -257,35 +261,35 @@ const Portfolio = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-24 px-4 glass-dark pt-32">
+      <section id="education" className="py-16 sm:py-20 md:py-24 px-4 glass-dark pt-32">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold text-center mb-20 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 md:mb-20 gradient-text px-4">
             Education
           </h2>
-          <div className="glass rounded-3xl p-10 hover-lift">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-              <div>
-                <h3 className="text-3xl font-bold text-white mb-4">Bachelor's in Computer Science</h3>
-                <p className="text-xl gradient-text-secondary mb-4">Eötvös Loránd University (ELTE), Hungary</p>
-                <div className="flex items-center gap-3 text-gray-400">
-                  <Calendar size={20} />
-                  <span className="font-mono">Sep 2023 – Jul 2026</span>
+          <div className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover-lift">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 sm:mb-8">
+              <div className="mb-4 md:mb-0">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">Bachelor's in Computer Science</h3>
+                <p className="text-base sm:text-lg md:text-xl gradient-text-secondary mb-3 sm:mb-4">Eötvös Loránd University (ELTE), Hungary</p>
+                <div className="flex items-center gap-2 sm:gap-3 text-gray-400">
+                  <Calendar size={16} className="sm:w-5 sm:h-5" />
+                  <span className="font-mono text-sm sm:text-base">Sep 2023 – Jul 2026</span>
                 </div>
               </div>
-              <div className="mt-6 md:mt-0">
-                <span className="btn-primary">
+              <div className="mt-4 md:mt-0">
+                <span className="btn-primary text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-2 sm:py-3 whitespace-normal text-center block w-full md:w-auto">
                   Stipendium Hungaricum Scholarship (100%)
                 </span>
               </div>
             </div>
             <div>
-              <h4 className="text-xl font-semibold text-white mb-6">Relevant Coursework:</h4>
-              <div className="flex flex-wrap gap-4">
+              <h4 className="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">Relevant Coursework:</h4>
+              <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
                 {[
                   "Data Structures", "Algorithms", "Object-Oriented Programming", 
                   "Software Development Methodologies", "Computer Networks"
                 ].map((course) => (
-                  <span key={course} className="glass px-4 py-2 rounded-full text-sm font-medium">
+                  <span key={course} className="glass px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
                     {course}
                   </span>
                 ))}
