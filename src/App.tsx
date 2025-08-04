@@ -41,115 +41,131 @@ const portfolioData = {
     title: 'Computer Science Student & Full-Stack Developer',
     location: 'Budapest, Hungary',
     email: 'emanaftab2022@gmail.com',
-    phone: '+36202526795',
+    phone: '+36 20 252 6795',
     github: 'muhammademanaftab',
     linkedin: 'muhammademanaftab',
     about: [
-      'I am a passionate Computer Science student at Budapest University of Technology and Economics, specializing in full-stack development and modern web technologies.',
-      'With a strong foundation in both frontend and backend development, I enjoy creating responsive, user-friendly applications that solve real-world problems.',
-      'I am constantly learning and exploring new technologies, with a particular interest in React, Laravel, and modern development practices.'
+      'I am a passionate Computer Science student at Eötvös Loránd University (ELTE) in Budapest, Hungary, pursuing my Bachelor\'s degree with a focus on software development and emerging technologies.',
+      'With a strong foundation in both frontend and backend development, I specialize in creating modern web applications using React, Laravel, and various other technologies. My experience spans from full-stack development to system design and implementation.',
+      'I am currently working as a Student Mentor at HOOK, where I guide international students in their academic journey and help them integrate into the Hungarian academic environment.',
+      'My technical interests include DevOps, containerization, machine learning, and building scalable applications. I am always eager to learn new technologies and contribute to innovative projects.'
     ]
   },
   quickFacts: {
     education: 'BSc Computer Science',
     experience: '2+ Years',
-    projects: '10+ Projects',
+    projects: '8+ Projects',
     certifications: '12+ Certifications'
   },
   education: {
-    degree: 'Bachelor of Science in Computer Science',
-    institution: 'Budapest University of Technology and Economics',
-    period: '2022 - 2026',
+    degree: 'Bachelor\'s in Computer Science',
+    institution: 'Eötvös Loránd University (ELTE), Hungary',
+    period: 'Sep 2023 – Jul 2026',
     scholarship: 'Stipendium Hungaricum Scholarship (100%)',
     coursework: [
-      'Data Structures & Algorithms',
+      'Data Structures',
+      'Algorithms',
       'Object-Oriented Programming',
-      'Database Management Systems',
-      'Web Development',
-      'Software Engineering',
+      'Software Development Methodologies',
       'Computer Networks'
     ]
   },
   experience: {
-    title: 'Full-Stack Developer',
-    company: 'Freelance & Personal Projects',
-    period: '2022 - Present',
+    title: 'Student Mentor',
+    company: 'HOOK',
+    location: 'Budapest, Hungary',
+    period: 'Jul 2024 – Present',
     responsibilities: [
-      'Developed responsive web applications using React, Laravel, and modern technologies',
-      'Implemented RESTful APIs and database design with SQLite and MySQL',
-      'Created user-friendly interfaces with TailwindCSS and Bootstrap',
-      'Deployed applications using Docker, Vercel, and various cloud platforms',
-      'Collaborated with clients to understand requirements and deliver solutions'
+      'Guided international students in academic success and cultural integration throughout their studies in Hungary',
+      'Assisted with course selection, administrative processes, and adapting to student life abroad',
+      'Fostered a supportive and enriching environment to help students achieve both academic and personal goals'
     ]
   },
   projects: [
     {
       id: 1,
-      title: 'Pet Catalogue - React & Laravel Web App',
-      description: 'Full-stack web application for cataloguing and managing pets with CRUD capabilities, birth/death tracking, and dynamic statistics.',
+      title: 'Pet Catalogue – React and Laravel Web App',
+      description: 'Developed a web application to catalogue and manage pets, featuring full CRUD capabilities with detailed birth/death tracking and dynamic pet statistics.',
       tech: ['React', 'Laravel', 'TailwindCSS', 'SQLite', 'Laravel Blade'],
-      features: ['Full CRUD Operations', 'Dynamic Statistics', 'Clean UI/UX'],
-      icon: 'code',
-      icon_color: 'green'
+      features: ['Full CRUD capabilities', 'Birth/death tracking', 'Dynamic pet statistics', 'Clean user interface'],
+      icon: 'database',
+      icon_color: 'blue'
     },
     {
       id: 2,
-      title: 'Laravel LMS - Learning Management System',
-      description: 'Comprehensive learning platform with role-based dashboards for teachers and students, featuring task management and secure authentication.',
-      tech: ['Laravel 12', 'SQLite', 'TailwindCSS', 'PHP', 'Laravel Breeze'],
-      features: ['Role-based Dashboards', 'Task Assignment', 'Secure Authentication'],
-      icon: 'users',
-      icon_color: 'blue'
+      title: 'Laravel LMS – Learning Management System',
+      description: 'Built a full-stack learning platform with role-based dashboards for teachers and students.',
+      tech: ['Laravel 12', 'SQLite', 'TailwindCSS', 'PHP'],
+      features: ['Role-based dashboards', 'Task assignment and evaluation flows', 'Secure authentication using Laravel Breeze'],
+      icon: 'graduationCap',
+      icon_color: 'purple'
     },
     {
       id: 3,
       title: 'Task Manager Pro',
-      description: 'Flask-based productivity application with priority filtering, due date tracking, and real-time reminders.',
+      description: 'Created a Flask-based to-do app with priority-based task filtering, due date tracking, and completion toggling.',
       tech: ['Flask', 'Python', 'SQLite', 'Bootstrap', 'HTML/CSS'],
-      features: ['Priority Filtering', 'Due Date Tracking', 'Real-time Reminders'],
-      icon: 'zap',
-      icon_color: 'yellow'
+      features: ['Priority-based task filtering', 'Due date tracking and real-time reminders', 'Detail view system for long tasks'],
+      icon: 'checkSquare',
+      icon_color: 'green'
     },
     {
       id: 4,
       title: 'Atmospheric Layer Simulation',
-      description: 'Advanced OOP simulation of atmospheric layer interactions using design patterns for modularity and scalability.',
-      tech: ['C#', 'OOP', 'Design Patterns', 'Unit Testing'],
-      features: ['Visitor Pattern', 'Singleton Pattern', 'Modular Design'],
-      icon: 'trendingUp',
-      icon_color: 'purple'
+      description: 'Simulated interactions between atmospheric layers under varying environmental influences using advanced OOP design.',
+      tech: ['C#', 'OOP', 'Simulation', 'Unit Testing'],
+      features: ['Advanced OOP design with design patterns', 'Visitor and Singleton pattern implementation', 'Modularity and scalability'],
+      icon: 'cloud',
+      icon_color: 'cyan'
     },
     {
       id: 5,
       title: 'Java Board Game Simulation',
-      description: 'Custom board game with dynamic movement logic, comprehensive player management, and extensive unit testing.',
+      description: 'Developed a custom Java board game with dynamic movement logic, player turns, and score management.',
       tech: ['Java', 'Swing', 'JUnit 5'],
-      features: ['Dynamic Movement', 'Score Management', 'Unit Tested'],
-      icon: 'star',
+      features: ['Dynamic movement logic and player turns', 'Score management', 'Unit-tested edge cases like board boundaries'],
+      icon: 'gamepad2',
       icon_color: 'orange'
     },
     {
       id: 6,
-      title: 'Vlera AI - Static Website',
-      description: 'Responsive informational website showcasing AI assistant applications and impact.',
+      title: 'Vlera AI – Static Website',
+      description: 'Built a responsive and informative static website detailing the impact and applications of AI assistants.',
       tech: ['HTML5', 'CSS', 'Bootstrap'],
-      features: ['Responsive Design', 'Modern UI', 'AI Focus'],
-      icon: 'cpu',
-      icon_color: 'cyan'
+      features: ['Responsive and informative design', 'AI assistant applications and impact', 'Modern static website'],
+      icon: 'brain',
+      icon_color: 'pink'
+    },
+    {
+      id: 7,
+      title: 'Web Store Management System',
+      description: 'Designed a CLI-based store management system featuring product entry, cart updates, and file-based persistence.',
+      tech: ['C++', 'Dynamic Memory', 'File Handling'],
+      features: ['Product entry and cart updates', 'File-based persistence', 'CLI-based store management'],
+      icon: 'shoppingCart',
+      icon_color: 'yellow'
+    },
+    {
+      id: 8,
+      title: 'Event Log Analyzer',
+      description: 'Created a Python-based analyzer to process, sort, and summarize user-machine logs.',
+      tech: ['Python', 'Object-Oriented Programming'],
+      features: ['Log processing and analysis', 'Data sorting and summarization', 'OOP and file handling for data reporting'],
+      icon: 'fileText',
+      icon_color: 'indigo'
     }
   ],
   skills: {
     'Programming Languages': ['Java', 'Python', 'C', 'C#', 'C++', 'SQL', 'JavaScript', 'HTML', 'CSS', 'PHP', 'Clean', 'Haskell'],
-    'Frontend Development': ['React', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'HTML5', 'CSS3', 'Responsive Design'],
-    'Backend Development': ['Laravel', 'Flask', 'Node.js', 'PHP', 'REST APIs', 'Microservices'],
-    'Database & Storage': ['SQLite', 'SQL', 'DBMS', 'File Handling'],
-    'DevOps & Tools': ['Docker', 'Kubernetes', 'Helm', 'Linux', 'Git', 'GitHub'],
-    'Specialized Areas': ['Networking', 'Cryptography & Security', 'Computer Graphics', 'Game Development', 'Robot Framework']
+    'Technologies & Interests': ['Docker', 'Kubernetes', 'Helm', 'Linux', 'Networking', 'Cryptography & Security', 'DevOps', 'Full Stack Development', 'Robot Framework', 'Game Development', 'GUI', 'Microservices', 'DBMS', 'Computer Graphics'],
+    'Web Development': ['React', 'Laravel', 'Flask', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'Laravel Blade'],
+    'Tools & Platforms': ['Git', 'GitHub', 'Docker', 'Kubernetes', 'SQLite', 'JUnit 5', 'Unit Testing']
   },
   certifications: [
     'Stipendium Hungaricum Scholarship (100%)',
     'React JS – Meta',
-    'React Basics & Advanced',
+    'React Basics',
+    'React Advanced',
     'Unsupervised Learning, Recommenders, Reinforcement Learning – Stanford Online',
     'Introduction to Containers w/ Docker, Kubernetes & OpenShift – IBM',
     'Java (Basic) – HackerRank',
@@ -164,14 +180,14 @@ const portfolioData = {
     email: {
       address: 'emanaftab2022@gmail.com',
       icon: 'mail',
-      color: 'purple',
-      label: 'Email Me'
+      color: 'blue',
+      label: 'Email'
     },
     phone: {
-      number: '+36202526795',
+      number: '+36 20 252 6795',
       icon: 'phone',
       color: 'green',
-      label: 'Call Me'
+      label: 'Phone'
     },
     github: {
       username: 'muhammademanaftab',
