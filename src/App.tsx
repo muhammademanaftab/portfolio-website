@@ -1,295 +1,496 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Code, Database, Server, Cpu, Award, Calendar, Download, Star, Zap, Users, TrendingUp } from 'lucide-react';
 import './App.css';
+import { 
+  ChevronDown, 
+  MapPin, 
+  Calendar, 
+  Award, 
+  Mail, 
+  Phone, 
+  Github, 
+  Linkedin,
+  Star,
+  Zap,
+  Users,
+  TrendingUp,
+  Code,
+  Cpu,
+  Download,
+  ExternalLink,
+  Heart,
+  Sparkles,
+  Target,
+  Globe,
+  Briefcase,
+  GraduationCap,
+  BookOpen,
+  Shield,
+  Database,
+  Server,
+  Monitor,
+  Smartphone,
+  Globe2,
+  MessageCircle,
+  Send,
+  FileText,
+  Layers,
+  Palette,
+  Smartphone as Mobile,
+  Globe as Web,
+  Code2,
+  Terminal,
+  Box,
+  Package,
+  Settings,
+  Wrench,
+  Rocket,
+  Lightbulb,
+  Brain,
+  Cpu as Chip,
+  Network,
+  Lock,
+  Eye,
+  Globe as Website,
+  Database as Storage,
+  Server as Backend,
+  Monitor as Frontend,
+  Shield as Security,
+  Target as Specialized
+} from 'lucide-react';
 
-const Portfolio = () => {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+// API Base URL
+const API_BASE_URL = 'http://localhost:8000/api';
+
+// Types for API responses
+interface PersonalInfo {
+  name: string;
+  title: string;
+  location: string;
+  email: string;
+  phone: string;
+  github: string;
+  linkedin: string;
+  about: string[];
+}
+
+interface QuickFacts {
+  education: string;
+  experience: string;
+  projects: string;
+  certifications: string;
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  scholarship: string;
+  coursework: string[];
+}
+
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  responsibilities: string[];
+}
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tech: string[];
+  features: string[];
+  icon: string;
+  icon_color: string;
+}
+
+interface Skills {
+  [category: string]: string[];
+}
+
+interface Contact {
+  email: {
+    address: string;
+    icon: string;
+    color: string;
+    label: string;
+  };
+  phone: {
+    number: string;
+    icon: string;
+    color: string;
+    label: string;
+  };
+  github: {
+    username: string;
+    url: string;
+    icon: string;
+    color: string;
+    label: string;
+  };
+  linkedin: {
+    username: string;
+    url: string;
+    icon: string;
+    color: string;
+    label: string;
+  };
+}
+
+function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [portfolioData, setPortfolioData] = useState<{
+    personalInfo?: PersonalInfo;
+    quickFacts?: QuickFacts;
+    education?: Education;
+    experience?: Experience;
+    projects?: Project[];
+    skills?: Skills;
+    certifications?: string[];
+    contact?: Contact;
+  }>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  // Fetch all portfolio data
   useEffect(() => {
-    setIsLoaded(true);
-    const handleScroll = () => {
-      const sections = ['hero', 'about', 'education', 'experience', 'projects', 'skills', 'certifications', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+    const fetchPortfolioData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch all data in parallel
+        const [
+          overviewResponse,
+          educationResponse,
+          experienceResponse,
+          projectsResponse,
+          skillsResponse,
+          certificationsResponse,
+          contactResponse
+        ] = await Promise.all([
+          fetch(`${API_BASE_URL}/portfolio/overview`),
+          fetch(`${API_BASE_URL}/portfolio/education`),
+          fetch(`${API_BASE_URL}/portfolio/experience`),
+          fetch(`${API_BASE_URL}/portfolio/projects`),
+          fetch(`${API_BASE_URL}/portfolio/skills`),
+          fetch(`${API_BASE_URL}/portfolio/certifications`),
+          fetch(`${API_BASE_URL}/portfolio/contact`)
+        ]);
+
+        // Check if all requests were successful
+        const responses = [
+          overviewResponse,
+          educationResponse,
+          experienceResponse,
+          projectsResponse,
+          skillsResponse,
+          certificationsResponse,
+          contactResponse
+        ];
+
+        const failedResponses = responses.filter(response => !response.ok);
+        if (failedResponses.length > 0) {
+          throw new Error(`Failed to fetch data: ${failedResponses.length} requests failed`);
         }
-        return false;
-      });
-      if (current) setActiveSection(current);
+
+        // Parse all responses
+        const [
+          overviewData,
+          educationData,
+          experienceData,
+          projectsData,
+          skillsData,
+          certificationsData,
+          contactData
+        ] = await Promise.all([
+          overviewResponse.json(),
+          educationResponse.json(),
+          experienceResponse.json(),
+          projectsResponse.json(),
+          skillsResponse.json(),
+          certificationsResponse.json(),
+          contactResponse.json()
+        ]);
+
+        setPortfolioData({
+          personalInfo: overviewData.personal_info,
+          quickFacts: overviewData.quick_facts,
+          education: educationData.education,
+          experience: experienceData.experience,
+          projects: projectsData.projects,
+          skills: skillsData.skills,
+          certifications: certificationsData.certifications,
+          contact: contactData.contact
+        });
+
+        setIsLoaded(true);
+      } catch (err) {
+        console.error('Error fetching portfolio data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load portfolio data');
+      } finally {
+        setLoading(false);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    fetchPortfolioData();
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false);
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-purple-500 mx-auto"></div>
+          <p className="text-white mt-4 text-lg">Loading portfolio...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-6xl mb-4">⚠️</div>
+          <h2 className="text-white text-2xl mb-2">Error Loading Portfolio</h2>
+          <p className="text-gray-300 mb-4">{error}</p>
+          <p className="text-gray-400 text-sm">
+            Make sure the Laravel backend is running on http://localhost:8000
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Get icon component by name with better mapping for projects
+  const getProjectIcon = (iconName: string) => {
+    const projectIcons: { [key: string]: any } = {
+      'code': Code2,
+      'users': Users,
+      'zap': Zap,
+      'trendingUp': TrendingUp,
+      'star': Star,
+      'cpu': Chip,
+      'web': Web,
+      'mobile': Mobile,
+      'database': Database,
+      'server': Server,
+      'frontend': Monitor,
+      'backend': Backend,
+      'fullstack': Code,
+      'ai': Brain,
+      'game': Target,
+      'security': Lock,
+      'ui': Palette,
+      'api': Terminal,
+      'cloud': Globe,
+      'devops': Settings
+    };
+    return projectIcons[iconName] || Code2;
   };
 
-  const projects = [
-    {
-      title: "Pet Catalogue - React & Laravel Web App",
-      description: "Full-stack web application for cataloguing and managing pets with CRUD capabilities, birth/death tracking, and dynamic statistics.",
-      tech: ["React", "Laravel", "TailwindCSS", "SQLite", "Laravel Blade"],
-      features: ["Full CRUD Operations", "Dynamic Statistics", "Clean UI/UX"],
-      icon: <Code className="text-blue-400" size={24} />
-    },
-    {
-      title: "Laravel LMS - Learning Management System",
-      description: "Comprehensive learning platform with role-based dashboards for teachers and students, featuring task management and secure authentication.",
-      tech: ["Laravel 12", "SQLite", "TailwindCSS", "PHP", "Laravel Breeze"],
-      features: ["Role-based Dashboards", "Task Assignment", "Secure Authentication"],
-      icon: <Users className="text-green-400" size={24} />
-    },
-    {
-      title: "Task Manager Pro",
-      description: "Flask-based productivity application with priority filtering, due date tracking, and real-time reminders.",
-      tech: ["Flask", "Python", "SQLite", "Bootstrap", "HTML/CSS"],
-      features: ["Priority Filtering", "Due Date Tracking", "Real-time Reminders"],
-      icon: <Zap className="text-yellow-400" size={24} />
-    },
-    {
-      title: "Atmospheric Layer Simulation",
-      description: "Advanced OOP simulation of atmospheric layer interactions using design patterns for modularity and scalability.",
-      tech: ["C#", "OOP", "Design Patterns", "Unit Testing"],
-      features: ["Visitor Pattern", "Singleton Pattern", "Modular Design"],
-      icon: <TrendingUp className="text-purple-400" size={24} />
-    },
-    {
-      title: "Java Board Game Simulation",
-      description: "Custom board game with dynamic movement logic, comprehensive player management, and extensive unit testing.",
-      tech: ["Java", "Swing", "JUnit 5"],
-      features: ["Dynamic Movement", "Score Management", "Unit Tested"],
-      icon: <Star className="text-orange-400" size={24} />
-    },
-    {
-      title: "Vlera AI - Static Website",
-      description: "Responsive informational website showcasing AI assistant applications and impact.",
-      tech: ["HTML5", "CSS", "Bootstrap"],
-      features: ["Responsive Design", "Modern UI", "AI Focus"],
-      icon: <Cpu className="text-cyan-400" size={24} />
-    }
-  ];
-
-  const skills = {
-    "Programming Languages": ["Java", "Python", "C", "C#", "C++", "SQL", "JavaScript", "HTML", "CSS", "PHP", "Clean", "Haskell"],
-    "Frontend Development": ["React", "TypeScript", "TailwindCSS", "Bootstrap", "HTML5", "CSS3", "Responsive Design"],
-    "Backend Development": ["Laravel", "Flask", "Node.js", "PHP", "REST APIs", "Microservices"],
-    "Database & Storage": ["SQLite", "SQL", "DBMS", "File Handling"],
-    "DevOps & Tools": ["Docker", "Kubernetes", "Helm", "Linux", "Git", "GitHub"],
-    "Specialized Areas": ["Networking", "Cryptography & Security", "Computer Graphics", "Game Development", "Robot Framework"]
+  // Get icon component by name with better mapping
+  const getIcon = (iconName: string) => {
+    const icons: { [key: string]: any } = {
+      star: Star,
+      zap: Zap,
+      users: Users,
+      trendingUp: TrendingUp,
+      code: Code,
+      cpu: Cpu,
+      mail: Mail,
+      phone: Phone,
+      github: Github,
+      linkedin: Linkedin,
+      download: Download,
+      externalLink: ExternalLink,
+      heart: Heart,
+      sparkles: Sparkles,
+      target: Target,
+      globe: Globe,
+      briefcase: Briefcase,
+      graduationCap: GraduationCap,
+      bookOpen: BookOpen,
+      shield: Shield,
+      database: Database,
+      server: Server,
+      monitor: Monitor,
+      smartphone: Smartphone,
+      globe2: Globe2,
+      messageCircle: MessageCircle,
+      send: Send
+    };
+    return icons[iconName] || Code;
   };
 
-  const certifications = [
-    "Stipendium Hungaricum Scholarship (100%)",
-    "React JS – Meta",
-    "React Basics & Advanced",
-    "Unsupervised Learning, Recommenders, Reinforcement Learning – Stanford Online",
-    "Introduction to Containers w/ Docker, Kubernetes & OpenShift – IBM",
-    "Java (Basic) – HackerRank",
-    "REST API (Intermediate) – HackerRank",
-    "SQL (Intermediate) – HackerRank",
-    "C# (Basic) – HackerRank",
-    "Crash Course on Python – Coursera",
-    "Introduction to Git and GitHub – Coursera",
-    "Web Design: Strategy and Information Architecture – Coursera"
-  ];
+  // Get skill category icon
+  const getSkillCategoryIcon = (category: string) => {
+    const categoryIcons: { [key: string]: any } = {
+      'Programming Languages': Code,
+      'Frontend Development': Monitor,
+      'Backend Development': Server,
+      'Database & Storage': Database,
+      'DevOps & Tools': Shield,
+      'Specialized Areas': Target
+    };
+    return categoryIcons[category] || Code;
+  };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Animated Background Elements */}
+    <div className={`min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '4s' }}></div>
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full glass-dark z-50 border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass-dark backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold gradient-text truncate">
-              Muhammad Eman Aftab
+          <div className="flex justify-between items-center h-16">
+            <div className="gradient-text text-xl font-bold flex items-center gap-2">
+              <Code className="w-6 h-6" />
+              Portfolio
             </div>
-            
-            {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {['About', 'Education', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`hover:text-purple-400 transition-all duration-300 relative ${
-                    activeSection === item.toLowerCase() ? 'text-purple-400' : 'text-white'
-                  }`}
-                >
-                  {item}
-                  {activeSection === item.toLowerCase() && (
-                    <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-pink-400"></div>
-                  )}
-                </button>
-              ))}
+              <a href="#about" className="text-white hover:text-purple-400 transition-colors relative group">
+                About
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#education" className="text-white hover:text-purple-400 transition-colors relative group">
+                Education
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#experience" className="text-white hover:text-purple-400 transition-colors relative group">
+                Experience
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#projects" className="text-white hover:text-purple-400 transition-colors relative group">
+                Projects
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#skills" className="text-white hover:text-purple-400 transition-colors relative group">
+                Skills
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#certifications" className="text-white hover:text-purple-400 transition-colors relative group">
+                Certifications
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#contact" className="text-white hover:text-purple-400 transition-colors relative group">
+                Contact
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-3 rounded-lg hover:bg-white/10 transition-colors touch-manipulation"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 h-6 flex flex-col justify-center">
-                <span className={`bg-white block h-0.5 w-6 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-                <span className={`bg-white block h-0.5 w-6 mt-1 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                <span className={`bg-white block h-0.5 w-6 mt-1 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
-              </div>
+            <button className="md:hidden text-white hover:text-purple-400 transition-colors" aria-label="Menu">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </button>
           </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-white/10 animate-slide-in">
-              {['About', 'Education', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left py-3 px-4 hover:text-purple-400 hover:bg-white/5 transition-colors touch-manipulation rounded-lg"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="max-w-6xl mx-auto text-center px-4 relative z-10">
-          <div className="mb-8 sm:mb-12 animate-slide-in">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 flex items-center justify-center animate-glow">
-              <Code size={32} className="sm:w-12 sm:h-12 md:w-16 md:h-16 text-white" />
+      <section id="hero" className="pt-20 pb-16 sm:pb-20 md:pb-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="mb-8">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-glow">
+                <Code className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white" />
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-4 sm:mb-6 gradient-text leading-tight px-2">
-              Muhammad Eman Aftab
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold gradient-text mb-6 animate-slide-in">
+              {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-3 sm:mb-4 font-light px-4">Computer Science Student & Full-Stack Developer</p>
-            <p className="text-base sm:text-lg text-gray-400 mb-8 sm:mb-12 font-mono">Budapest, Hungary</p>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto animate-fade-in">
+              {portfolioData.personalInfo?.title || 'Computer Science Student & Full-Stack Developer'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <a 
+                href="#contact" 
+                className="btn-secondary hover-lift px-8 py-3 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Get In Touch
+              </a>
+              <a 
+                href="/resume.pdf" 
+                download="Muhammad_Eman_Aftab_Resume.pdf"
+                className="btn-primary hover-lift px-8 py-3 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
+              >
+                <Download className="w-5 h-5" />
+                Download Resume
+              </a>
+            </div>
+            <div className="flex justify-center">
+              <ChevronDown className="w-8 h-8 text-gray-400 animate-bounce" aria-label="Scroll down" />
+            </div>
           </div>
-
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16 px-2">
-            <a href="mailto:emanaftab2022@gmail.com" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
-              <Mail size={16} className="sm:w-5 sm:h-5" />
-              <span className="hidden sm:inline">Email Me</span>
-              <span className="sm:hidden">Email</span>
-            </a>
-            <a href="tel:+36202526795" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
-              <Phone size={16} className="sm:w-5 sm:h-5" />
-              <span className="hidden sm:inline">Call Me</span>
-              <span className="sm:hidden">Call</span>
-            </a>
-            <a href="https://github.com/muhammademanaftab" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
-              <Github size={16} className="sm:w-5 sm:h-5" />
-              GitHub
-            </a>
-            <a href="https://linkedin.com/in/muhammademanaftab" className="btn-secondary flex items-center gap-2 sm:gap-3 hover-lift text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
-              <Linkedin size={16} className="sm:w-5 sm:h-5" />
-              LinkedIn
-            </a>
-          </div>
-
-          <button
-            onClick={() => scrollToSection('about')}
-            className="animate-bounce touch-manipulation"
-            aria-label="Scroll to about section"
-          >
-            <ChevronDown size={32} className="sm:w-10 sm:h-10 text-purple-400" />
-          </button>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 sm:py-20 md:py-24 px-4 pt-32">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 md:mb-20 gradient-text px-4">
+      <section id="about" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
             About Me
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
-            <div className="space-y-4 sm:space-y-6">
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
-                I'm a passionate Computer Science student at Eötvös Loránd University (ELTE) in Budapest, Hungary, 
-                with a strong foundation in full-stack development and software engineering. Currently pursuing my 
-                Bachelor's degree, I combine academic excellence with practical experience in modern web technologies.
-              </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
-                As a Student Mentor at HÖOK, I help international students navigate their academic journey while 
-                continuously expanding my technical expertise through diverse projects ranging from web applications 
-                to system simulations.
-              </p>
-              <div className="flex items-center gap-3 sm:gap-4 text-gray-400">
-                <MapPin size={20} className="sm:w-6 sm:h-6" />
-                <span className="font-mono text-sm sm:text-base">Budapest, Hungary</span>
-              </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              {portfolioData.personalInfo?.about?.map((paragraph, index) => (
+                <p key={index} className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
             </div>
-            <div className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover-lift">
-              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 gradient-text-secondary">Quick Facts</h3>
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm sm:text-base">Education</span>
-                  <span className="text-white font-semibold text-sm sm:text-base">CS @ ELTE</span>
+            <div className="grid grid-cols-2 gap-6">
+              {portfolioData.quickFacts && Object.entries(portfolioData.quickFacts).map(([key, value]) => (
+                <div key={key} className="glass hover-lift p-6 rounded-2xl text-center">
+                  <h3 className="text-2xl sm:text-3xl font-bold gradient-text mb-2">{value}</h3>
+                  <p className="text-gray-400 capitalize">{key}</p>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm sm:text-base">Experience</span>
-                  <span className="text-white font-semibold text-sm sm:text-base">Student Mentor</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm sm:text-base">Projects</span>
-                  <span className="text-white font-semibold text-sm sm:text-base">8+ Completed</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm sm:text-base">Certifications</span>
-                  <span className="text-white font-semibold text-sm sm:text-base">12+ Earned</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-16 sm:py-20 md:py-24 px-4 glass-dark pt-32">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 md:mb-20 gradient-text px-4">
+      <section id="education" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
             Education
           </h2>
-          <div className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover-lift">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 sm:mb-8">
-              <div className="mb-4 md:mb-0">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">Bachelor's in Computer Science</h3>
-                <p className="text-base sm:text-lg md:text-xl gradient-text-secondary mb-3 sm:mb-4">Eötvös Loránd University (ELTE), Hungary</p>
-                <div className="flex items-center gap-2 sm:gap-3 text-gray-400">
-                  <Calendar size={16} className="sm:w-5 sm:h-5" />
-                  <span className="font-mono text-sm sm:text-base">Sep 2023 – Jul 2026</span>
-                </div>
-              </div>
-              <div className="mt-4 md:mt-0">
-                <span className="btn-primary text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-2 sm:py-3 whitespace-normal text-center block w-full md:w-auto">
-                  Stipendium Hungaricum Scholarship (100%)
-                </span>
+          <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
+            <div className="flex items-start gap-4 mb-6">
+              <GraduationCap className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
+                  {portfolioData.education?.degree}
+                </h3>
+                <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-2">
+                  {portfolioData.education?.institution}
+                </p>
+                <p className="text-gray-400 text-sm sm:text-base md:text-lg font-mono">
+                  {portfolioData.education?.period}
+                </p>
               </div>
             </div>
+            <div className="mb-6">
+              <span className="btn-primary inline-block px-4 py-2 text-sm sm:text-base md:text-lg font-semibold rounded-full whitespace-normal text-center block w-full md:w-auto">
+                {portfolioData.education?.scholarship}
+              </span>
+            </div>
             <div>
-              <h4 className="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">Relevant Coursework:</h4>
-              <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
-                {[
-                  "Data Structures", "Algorithms", "Object-Oriented Programming", 
-                  "Software Development Methodologies", "Computer Networks"
-                ].map((course) => (
-                  <span key={course} className="glass px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-4">Key Coursework</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {portfolioData.education?.coursework?.map((course, index) => (
+                  <span key={index} className="bg-purple-500/20 text-purple-300 px-3 py-2 rounded-lg text-sm sm:text-base text-center">
                     {course}
                   </span>
                 ))}
@@ -300,192 +501,195 @@ const Portfolio = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-24 px-4 pt-32">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold text-center mb-20 gradient-text">
+      <section id="experience" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
             Experience
           </h2>
-          <div className="glass rounded-3xl p-10 hover-lift">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
+            <div className="flex items-start gap-4 mb-6">
+              <Briefcase className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
               <div>
-                <h3 className="text-3xl font-bold text-white mb-4">Student Mentor</h3>
-                <p className="text-xl gradient-text-secondary mb-4">HÖOK, Budapest, Hungary</p>
-                <div className="flex items-center gap-3 text-gray-400">
-                  <Calendar size={20} />
-                  <span className="font-mono">Jul 2024 – Present</span>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-300 text-lg">
-                  Guided international students in academic success and cultural integration throughout their studies in Hungary
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
+                  {portfolioData.experience?.title}
+                </h3>
+                <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-2">
+                  {portfolioData.experience?.company}
                 </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-300 text-lg">
-                  Assisted with course selection, administrative processes, and adapting to student life abroad
-                </p>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-300 text-lg">
-                  Fostered a supportive and enriching environment to help students achieve both academic and personal goals
+                <p className="text-gray-400 text-sm sm:text-base md:text-lg font-mono">
+                  {portfolioData.experience?.period}
                 </p>
               </div>
             </div>
+            <ul className="space-y-3">
+              {portfolioData.experience?.responsibilities?.map((responsibility, index) => (
+                <li key={index} className="flex items-start gap-3 text-gray-300 text-base sm:text-lg md:text-xl">
+                  <span className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></span>
+                  {responsibility}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 px-4 glass-dark pt-32">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl font-bold text-center mb-20 gradient-text">
-            Featured Projects
+      <section id="projects" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
+            Projects
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="glass rounded-2xl p-8 hover-lift group">
-                <div className="flex items-center justify-between mb-6">
-                  {project.icon}
-                  <ExternalLink className="text-gray-400 group-hover:text-white transition-colors" size={20} />
+            {portfolioData.projects?.map((project) => {
+              const IconComponent = getProjectIcon(project.icon);
+              return (
+                <div key={project.id} className="glass hover-lift p-6 sm:p-8 rounded-2xl">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center`}>
+                      <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-6">
+                    {project.description}
+                  </p>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech, index) => (
+                          <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs sm:text-sm">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">Features</h4>
+                      <ul className="space-y-1">
+                        {project.features.map((feature, index) => (
+                          <li key={index} className="text-gray-300 text-xs sm:text-sm md:text-base flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">{project.title}</h3>
-                <p className="text-gray-300 mb-6 text-sm leading-relaxed">{project.description}</p>
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold gradient-text-secondary mb-3">Key Features:</h4>
-                  <ul className="text-sm text-gray-300 space-y-2">
-                    {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="glass px-3 py-1 rounded-full text-xs font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-24 px-4 pt-32">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl font-bold text-center mb-20 gradient-text">
-            Technical Skills
+      <section id="skills" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
+            Skills
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(skills).map(([category, skillList]) => (
-              <div key={category} className="glass rounded-2xl p-8 hover-lift">
-                <div className="flex items-center gap-4 mb-8">
-                  {category.includes('Programming') && <Code className="text-blue-400" size={28} />}
-                  {category.includes('Frontend') && <Server className="text-green-400" size={28} />}
-                  {category.includes('Backend') && <Database className="text-purple-400" size={28} />}
-                  {category.includes('Database') && <Database className="text-cyan-400" size={28} />}
-                  {category.includes('DevOps') && <Cpu className="text-orange-400" size={28} />}
-                  {category.includes('Specialized') && <Award className="text-pink-400" size={28} />}
-                  <h3 className="text-xl font-bold text-white">{category}</h3>
+            {portfolioData.skills && Object.entries(portfolioData.skills).map(([category, skills]) => {
+              const CategoryIcon = getSkillCategoryIcon(category);
+              return (
+                <div key={category} className="glass hover-lift p-6 sm:p-8 rounded-2xl">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                      <CategoryIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                      {category}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.map((skill, index) => (
+                      <span key={index} className="bg-purple-500/20 text-purple-300 px-3 py-2 rounded-lg text-sm sm:text-base">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  {skillList.map((skill) => (
-                    <span key={skill} className="glass px-4 py-2 rounded-full text-sm font-medium hover:bg-white/30 transition-colors">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-24 px-4 glass-dark pt-32">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold text-center mb-20 gradient-text">
-            Honors & Certifications
+      <section id="certifications" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
+            Certifications
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {certifications.map((cert, index) => (
-              <div key={index} className="glass rounded-xl p-6 flex items-center gap-4 hover-lift group">
-                <Award className="text-purple-400 flex-shrink-0 group-hover:scale-110 transition-transform" size={24} />
-                <span className="text-gray-200 text-sm font-medium">{cert}</span>
-              </div>
-            ))}
+          <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
+            <div className="flex items-center gap-4 mb-8">
+              <Award className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400" />
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+                Professional Certifications
+              </h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {portfolioData.certifications?.map((certification, index) => (
+                <span key={index} className="bg-purple-500/20 text-purple-300 px-4 py-3 rounded-lg text-sm sm:text-base md:text-lg">
+                  {certification}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4 pt-32">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-5xl font-bold mb-12 gradient-text">
-            Let's Connect
+      <section id="contact" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-8">
+            Get In Touch
           </h2>
-          <p className="text-2xl text-gray-300 mb-16 leading-relaxed">
-            I'm always interested in new opportunities and collaborations. Let's discuss how we can work together!
+          <p className="text-center text-gray-300 text-base sm:text-lg md:text-xl mb-12 max-w-3xl mx-auto">
+            I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!
           </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            <a href="mailto:emanaftab2022@gmail.com" className="glass rounded-2xl p-8 hover-lift group">
-              <Mail className="text-purple-400 mx-auto mb-6 group-hover:scale-110 transition-transform" size={40} />
-              <h3 className="font-semibold text-white mb-3 text-lg">Email</h3>
-              <p className="text-gray-400 text-sm font-mono">emanaftab2022@gmail.com</p>
-            </a>
-            
-            <a href="tel:+36202526795" className="glass rounded-2xl p-8 hover-lift group">
-              <Phone className="text-green-400 mx-auto mb-6 group-hover:scale-110 transition-transform" size={40} />
-              <h3 className="font-semibold text-white mb-3 text-lg">Phone</h3>
-              <p className="text-gray-400 text-sm font-mono">+36 20 252 6795</p>
-            </a>
-            
-            <a href="https://github.com/muhammademanaftab" className="glass rounded-2xl p-8 hover-lift group">
-              <Github className="text-gray-400 mx-auto mb-6 group-hover:scale-110 transition-transform" size={40} />
-              <h3 className="font-semibold text-white mb-3 text-lg">GitHub</h3>
-              <p className="text-gray-400 text-sm font-mono">muhammademanaftab</p>
-            </a>
-            
-            <a href="https://linkedin.com/in/muhammademanaftab" className="glass rounded-2xl p-8 hover-lift group">
-              <Linkedin className="text-blue-400 mx-auto mb-6 group-hover:scale-110 transition-transform" size={40} />
-              <h3 className="font-semibold text-white mb-3 text-lg">LinkedIn</h3>
-              <p className="text-gray-400 text-sm font-mono">muhammademanaftab</p>
-            </a>
-          </div>
-
-          <div className="flex justify-center">
-            <a 
-              href="/resume.pdf" 
-              download="Muhammad_Eman_Aftab_Resume.pdf"
-              className="btn-primary flex items-center gap-4 text-lg px-10 py-4"
-            >
-              <Download size={24} />
-              Download Resume
-            </a>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {portfolioData.contact && Object.entries(portfolioData.contact).map(([key, contact]) => {
+              const IconComponent = getIcon(contact.icon);
+              return (
+                <a
+                  key={key}
+                  href={key === 'email' ? `mailto:${contact.address}` : key === 'phone' ? `tel:${contact.number}` : contact.url}
+                  target={key === 'email' || key === 'phone' ? undefined : '_blank'}
+                  rel={key === 'email' || key === 'phone' ? undefined : 'noopener noreferrer'}
+                  className="glass hover-lift p-6 rounded-2xl text-center group transition-all duration-300"
+                >
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-${contact.color}-500 to-${contact.color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                  </div>
+                  <h3 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">
+                    {contact.label}
+                  </h3>
+                  <p className="text-gray-300 text-xs sm:text-sm md:text-base">
+                    {key === 'email' ? contact.address : key === 'phone' ? contact.number : contact.username}
+                  </p>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-white/10 glass-dark">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-400 font-mono">
-            © 2025 Muhammad Eman Aftab. Built with React, TypeScript & Tailwind CSS.
-          </p>
+      <footer className="py-8 glass-dark border-t border-white/10 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-400 font-mono text-sm sm:text-base">
+              © 2024 {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}. Built with React & Laravel.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
   );
-};
+}
 
-export default Portfolio;
+export default App; 
