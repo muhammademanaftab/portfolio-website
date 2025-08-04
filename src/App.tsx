@@ -192,10 +192,15 @@ const portfolioData = {
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   // Get icon component by name with better mapping for projects
   const getProjectIcon = (iconName: string) => {
@@ -284,10 +289,12 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 glass-dark backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-                         <div className="gradient-text text-xl font-bold flex items-center gap-2">
-               <CodeModern className="w-6 h-6" />
-               Portfolio
-             </div>
+            <div className="gradient-text text-xl font-bold flex items-center gap-2">
+              <CodeModern className="w-6 h-6" />
+              Portfolio
+            </div>
+            
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               <a href="#about" className="text-white hover:text-purple-400 transition-colors relative group">
                 About
@@ -318,11 +325,72 @@ function App() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
               </a>
             </div>
-            <button className="md:hidden text-white hover:text-purple-400 transition-colors" aria-label="Menu">
+            
+            {/* Mobile menu button */}
+            <button 
+              className="md:hidden text-white hover:text-purple-400 transition-colors p-2" 
+              aria-label="Menu"
+              onClick={toggleMobileMenu}
+            >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
+          </div>
+          
+          {/* Mobile menu dropdown */}
+          <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-b border-white/10 z-50`}>
+            <div className="px-4 py-6 space-y-4">
+              <a 
+                href="#about" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a 
+                href="#education" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Education
+              </a>
+              <a 
+                href="#experience" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Experience
+              </a>
+              <a 
+                href="#projects" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Projects
+              </a>
+              <a 
+                href="#skills" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Skills
+              </a>
+              <a 
+                href="#certifications" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Certifications
+              </a>
+              <a 
+                href="#contact" 
+                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
           </div>
         </div>
       </nav>
