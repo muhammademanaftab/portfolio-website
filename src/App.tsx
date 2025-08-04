@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Code, Database, Server, Cpu, Award, Calendar, Download, Star, Zap, Users, TrendingUp } from 'lucide-react';
 import './App.css';
 
