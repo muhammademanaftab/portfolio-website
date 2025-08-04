@@ -339,166 +339,186 @@ function App() {
           </div>
           
           {/* Mobile menu dropdown */}
-          <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-b border-white/10 z-50`}>
-            <div className="px-4 py-6 space-y-4">
-              <a 
-                href="#about" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </a>
-              <a 
-                href="#education" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Education
-              </a>
-              <a 
-                href="#experience" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Experience
-              </a>
-              <a 
-                href="#projects" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Projects
-              </a>
-              <a 
-                href="#skills" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Skills
-              </a>
-              <a 
-                href="#certifications" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Certifications
-              </a>
-              <a 
-                href="#contact" 
-                className="block text-white hover:text-purple-400 transition-colors py-2 text-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </a>
+          <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-b border-white/10 z-50 transition-all duration-300 ease-in-out`}>
+            <div className="px-6 py-8 space-y-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-white text-lg font-semibold">Navigation</h3>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-gray-400 hover:text-white transition-colors p-2"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="space-y-4">
+                <a 
+                  href="#about" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">About</span>
+                </a>
+                <a 
+                  href="#education" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">Education</span>
+                </a>
+                <a 
+                  href="#experience" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">Experience</span>
+                </a>
+                <a 
+                  href="#projects" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">Projects</span>
+                </a>
+                <a 
+                  href="#skills" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">Skills</span>
+                </a>
+                <a 
+                  href="#certifications" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">Certifications</span>
+                </a>
+                <a 
+                  href="#contact" 
+                  className="flex items-center text-white hover:text-purple-400 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5 group"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:scale-150 transition-transform"></div>
+                  <span className="text-lg font-medium">Contact</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="hero" className="pt-20 pb-16 sm:pb-20 md:pb-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-8">
-                             <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-glow">
-                 <CodeModern className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-white" />
+             {/* Hero Section */}
+       <section id="hero" className="pt-24 pb-16 sm:pb-20 md:pb-24 relative z-10">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="text-center">
+             <div className="mb-8">
+               <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-glow">
+                 <CodeModern className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 text-white" />
                </div>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold gradient-text mb-6 animate-slide-in">
-              {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto animate-fade-in">
-              {portfolioData.personalInfo?.title || 'Computer Science Student & Full-Stack Developer'}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <a 
-                href="#contact" 
-                className="btn-secondary hover-lift px-8 py-3 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Get In Touch
-              </a>
-              <a 
-                href="/resume.pdf" 
-                download="Muhammad_Eman_Aftab_Resume.pdf"
-                className="btn-primary hover-lift px-8 py-3 text-base sm:text-lg md:text-xl font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                Download Resume
-              </a>
-            </div>
-            <div className="flex justify-center">
-              <ChevronDown className="w-8 h-8 text-gray-400 animate-bounce" aria-label="Scroll down" />
-            </div>
-          </div>
-        </div>
-      </section>
+             </div>
+             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold gradient-text mb-4 sm:mb-6 animate-slide-in leading-tight">
+               {portfolioData.personalInfo?.name || 'Muhammad Eman Aftab'}
+             </h1>
+             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-4xl mx-auto animate-fade-in px-4">
+               {portfolioData.personalInfo?.title || 'Computer Science Student & Full-Stack Developer'}
+             </p>
+             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 px-4">
+               <a 
+                 href="#contact" 
+                 className="btn-secondary hover-lift px-6 py-3 sm:px-8 sm:py-3 text-sm sm:text-base md:text-lg font-semibold rounded-full transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
+               >
+                 <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                 Get In Touch
+               </a>
+               <a 
+                 href="/resume.pdf" 
+                 download="Muhammad_Eman_Aftab_Resume.pdf"
+                 className="btn-primary hover-lift px-6 py-3 sm:px-8 sm:py-3 text-sm sm:text-base md:text-lg font-semibold rounded-full transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
+               >
+                 <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                 Download Resume
+               </a>
+             </div>
+             <div className="flex justify-center">
+               <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 animate-bounce" aria-label="Scroll down" />
+             </div>
+           </div>
+         </div>
+       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
-            About Me
-          </h2>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              {portfolioData.personalInfo?.about?.map((paragraph, index) => (
-                <p key={index} className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              {portfolioData.quickFacts && Object.entries(portfolioData.quickFacts).map(([key, value]) => (
-                <div key={key} className="glass hover-lift p-6 rounded-2xl text-center">
-                  <h3 className="text-2xl sm:text-3xl font-bold gradient-text mb-2">{value}</h3>
-                  <p className="text-gray-400 capitalize">{key}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+             {/* About Section */}
+       <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 pt-20 sm:pt-32 relative z-10">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center gradient-text mb-8 sm:mb-12 lg:mb-16">
+             About Me
+           </h2>
+           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start lg:items-center">
+             <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
+               {portfolioData.personalInfo?.about?.map((paragraph, index) => (
+                 <p key={index} className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed">
+                   {paragraph}
+                 </p>
+               ))}
+             </div>
+             <div className="grid grid-cols-2 gap-4 sm:gap-6 order-1 lg:order-2">
+               {portfolioData.quickFacts && Object.entries(portfolioData.quickFacts).map(([key, value]) => (
+                 <div key={key} className="glass hover-lift p-4 sm:p-6 rounded-xl sm:rounded-2xl text-center">
+                   <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold gradient-text mb-1 sm:mb-2">{value}</h3>
+                   <p className="text-xs sm:text-sm text-gray-400 capitalize">{key}</p>
+                 </div>
+               ))}
+             </div>
+           </div>
+         </div>
+       </section>
 
-      {/* Education Section */}
-      <section id="education" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
-            Education
-          </h2>
-          <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
-                         <div className="flex items-start gap-4 mb-6">
-               <GraduationCapIcon className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
-              <div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
-                  {portfolioData.education?.degree}
-                </h3>
-                <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-2">
-                  {portfolioData.education?.institution}
-                </p>
-                <p className="text-gray-400 text-sm sm:text-base md:text-lg font-mono">
-                  {portfolioData.education?.period}
-                </p>
-              </div>
-            </div>
-            <div className="mb-6">
-              <span className="btn-primary inline-block px-4 py-2 text-sm sm:text-base md:text-lg font-semibold rounded-full whitespace-normal text-center block w-full md:w-auto">
-                {portfolioData.education?.scholarship}
-              </span>
-            </div>
-            <div>
-              <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-4">Key Coursework</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {portfolioData.education?.coursework?.map((course, index) => (
-                  <span key={index} className="bg-purple-500/20 text-purple-300 px-3 py-2 rounded-lg text-sm sm:text-base text-center">
-                    {course}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+             {/* Education Section */}
+       <section id="education" className="py-12 sm:py-16 md:py-20 lg:py-24 pt-20 sm:pt-32 relative z-10">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center gradient-text mb-8 sm:mb-12 lg:mb-16">
+             Education
+           </h2>
+           <div className="glass hover-lift p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-3xl">
+             <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+               <GraduationCapIcon className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400 flex-shrink-0 mt-1" />
+               <div>
+                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 sm:mb-2">
+                   {portfolioData.education?.degree}
+                 </h3>
+                 <p className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl mb-1 sm:mb-2">
+                   {portfolioData.education?.institution}
+                 </p>
+                 <p className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg font-mono">
+                   {portfolioData.education?.period}
+                 </p>
+               </div>
+             </div>
+             <div className="mb-4 sm:mb-6">
+               <span className="btn-primary inline-block px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm md:text-base lg:text-lg font-semibold rounded-full whitespace-normal text-center block w-full md:w-auto">
+                 {portfolioData.education?.scholarship}
+               </span>
+             </div>
+             <div>
+               <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white mb-3 sm:mb-4">Key Coursework</h4>
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                 {portfolioData.education?.coursework?.map((course, index) => (
+                   <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-1 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm md:text-base text-center">
+                     {course}
+                   </span>
+                 ))}
+               </div>
+             </div>
+           </div>
+         </div>
+       </section>
 
       {/* Experience Section */}
       <section id="experience" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
@@ -533,57 +553,57 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-16">
-            Projects
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioData.projects?.map((project) => {
-              const IconComponent = getProjectIcon(project.icon);
-              return (
-                <div key={project.id} className="glass hover-lift p-6 sm:p-8 rounded-2xl">
-                                     <div className="flex items-center gap-4 mb-4">
-                     <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-glow`}>
-                       <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+             {/* Projects Section */}
+       <section id="projects" className="py-12 sm:py-16 md:py-20 lg:py-24 pt-20 sm:pt-32 relative z-10">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center gradient-text mb-8 sm:mb-12 lg:mb-16">
+             Projects
+           </h2>
+           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+             {portfolioData.projects?.map((project) => {
+               const IconComponent = getProjectIcon(project.icon);
+               return (
+                 <div key={project.id} className="glass hover-lift p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
+                   <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                     <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-glow`}>
+                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
                      </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
-                      {project.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-6">
-                    {project.description}
-                  </p>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">Technologies</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech, index) => (
-                          <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs sm:text-sm">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">Features</h4>
-                      <ul className="space-y-1">
-                        {project.features.map((feature, index) => (
-                          <li key={index} className="text-gray-300 text-xs sm:text-sm md:text-base flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                     <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">
+                       {project.title}
+                     </h3>
+                   </div>
+                   <p className="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6">
+                     {project.description}
+                   </p>
+                   <div className="space-y-3 sm:space-y-4">
+                     <div>
+                       <h4 className="text-white font-semibold mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Technologies</h4>
+                       <div className="flex flex-wrap gap-1 sm:gap-2">
+                         {project.tech.map((tech, index) => (
+                           <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs sm:text-sm">
+                             {tech}
+                           </span>
+                         ))}
+                       </div>
+                     </div>
+                     <div>
+                       <h4 className="text-white font-semibold mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Features</h4>
+                       <ul className="space-y-1">
+                         {project.features.map((feature, index) => (
+                           <li key={index} className="text-gray-300 text-xs sm:text-sm md:text-base flex items-center gap-2">
+                             <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400 rounded-full"></span>
+                             {feature}
+                           </li>
+                         ))}
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
+               );
+             })}
+           </div>
+         </div>
+       </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
@@ -642,42 +662,42 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-16 sm:py-20 md:py-24 pt-32 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center gradient-text mb-8">
-            Get In Touch
-          </h2>
-          <p className="text-center text-gray-300 text-base sm:text-lg md:text-xl mb-12 max-w-3xl mx-auto">
-            I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {portfolioData.contact && Object.entries(portfolioData.contact).map(([key, contact]) => {
-              const IconComponent = getIcon(contact.icon);
-              const contactData = contact as any; // Type assertion to handle different contact types
-              return (
-                <a
-                  key={key}
-                  href={key === 'email' ? `mailto:${contactData.address}` : key === 'phone' ? `tel:${contactData.number}` : contactData.url}
-                  target={key === 'email' || key === 'phone' ? undefined : '_blank'}
-                  rel={key === 'email' || key === 'phone' ? undefined : 'noopener noreferrer'}
-                  className="glass hover-lift p-6 rounded-2xl text-center group transition-all duration-300"
-                >
-                                     <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-${contact.color}-500 to-${contact.color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-bounce`}>
-                     <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+             {/* Contact Section */}
+       <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 pt-20 sm:pt-32 relative z-10">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center gradient-text mb-6 sm:mb-8">
+             Get In Touch
+           </h2>
+           <p className="text-center text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
+             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!
+           </p>
+           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+             {portfolioData.contact && Object.entries(portfolioData.contact).map(([key, contact]) => {
+               const IconComponent = getIcon(contact.icon);
+               const contactData = contact as any; // Type assertion to handle different contact types
+               return (
+                 <a
+                   key={key}
+                   href={key === 'email' ? `mailto:${contactData.address}` : key === 'phone' ? `tel:${contactData.number}` : contactData.url}
+                   target={key === 'email' || key === 'phone' ? undefined : '_blank'}
+                   rel={key === 'email' || key === 'phone' ? undefined : 'noopener noreferrer'}
+                   className="glass hover-lift p-4 sm:p-6 rounded-xl sm:rounded-2xl text-center group transition-all duration-300"
+                 >
+                   <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-${contact.color}-500 to-${contact.color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-bounce`}>
+                     <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
                    </div>
-                  <h3 className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">
-                    {contact.label}
-                  </h3>
-                  <p className="text-gray-300 text-xs sm:text-sm md:text-base">
-                    {key === 'email' ? contactData.address : key === 'phone' ? contactData.number : contactData.username}
-                  </p>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                   <h3 className="text-white font-semibold mb-1 sm:mb-2 text-xs sm:text-sm md:text-base lg:text-lg">
+                     {contact.label}
+                   </h3>
+                   <p className="text-gray-300 text-xs sm:text-sm md:text-base">
+                     {key === 'email' ? contactData.address : key === 'phone' ? contactData.number : contactData.username}
+                   </p>
+                 </a>
+               );
+             })}
+           </div>
+         </div>
+       </section>
 
       {/* Footer */}
       <footer className="py-8 glass-dark border-t border-white/10 relative z-10">
