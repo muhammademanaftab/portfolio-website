@@ -102,80 +102,88 @@ const portfolioData = {
       ]
     }
   ],
-  projects: [
-    {
-      id: 1,
-      title: 'Pet Catalogue – React and Laravel Web App',
-      description: 'Developed a web application to catalogue and manage pets, featuring full CRUD capabilities with detailed birth/death tracking and dynamic pet statistics.',
-      tech: ['React', 'Laravel', 'TailwindCSS', 'SQLite', 'Laravel Blade'],
-      features: ['Full CRUD capabilities', 'Birth/death tracking', 'Dynamic pet statistics', 'Clean user interface'],
-      icon: 'database',
-      icon_color: 'blue'
-    },
-    {
-      id: 2,
-      title: 'Laravel LMS – Learning Management System',
-      description: 'Built a full-stack learning platform with role-based dashboards for teachers and students.',
-      tech: ['Laravel 12', 'SQLite', 'TailwindCSS', 'PHP'],
-      features: ['Role-based dashboards', 'Task assignment and evaluation flows', 'Secure authentication using Laravel Breeze'],
-      icon: 'graduationCap',
-      icon_color: 'purple'
-    },
-    {
-      id: 3,
-      title: 'Task Manager Pro',
-      description: 'Created a Flask-based to-do app with priority-based task filtering, due date tracking, and completion toggling.',
-      tech: ['Flask', 'Python', 'SQLite', 'Bootstrap', 'HTML/CSS'],
-      features: ['Priority-based task filtering', 'Due date tracking and real-time reminders', 'Detail view system for long tasks'],
-      icon: 'checkSquare',
-      icon_color: 'green'
-    },
-    {
-      id: 4,
-      title: 'Atmospheric Layer Simulation',
-      description: 'Simulated interactions between atmospheric layers under varying environmental influences using advanced OOP design.',
-      tech: ['C#', 'OOP', 'Simulation', 'Unit Testing'],
-      features: ['Advanced OOP design with design patterns', 'Visitor and Singleton pattern implementation', 'Modularity and scalability'],
-      icon: 'cloud',
-      icon_color: 'cyan'
-    },
-    {
-      id: 5,
-      title: 'Java Board Game Simulation',
-      description: 'Developed a custom Java board game with dynamic movement logic, player turns, and score management.',
-      tech: ['Java', 'Swing', 'JUnit 5'],
-      features: ['Dynamic movement logic and player turns', 'Score management', 'Unit-tested edge cases like board boundaries'],
-      icon: 'gamepad2',
-      icon_color: 'orange'
-    },
-    {
-      id: 6,
-      title: 'Vlera AI – Static Website',
-      description: 'Built a responsive and informative static website detailing the impact and applications of AI assistants.',
-      tech: ['HTML5', 'CSS', 'Bootstrap'],
-      features: ['Responsive and informative design', 'AI assistant applications and impact', 'Modern static website'],
-      icon: 'brain',
-      icon_color: 'pink'
-    },
-    {
-      id: 7,
-      title: 'Web Store Management System',
-      description: 'Designed a CLI-based store management system featuring product entry, cart updates, and file-based persistence.',
-      tech: ['C++', 'Dynamic Memory', 'File Handling'],
-      features: ['Product entry and cart updates', 'File-based persistence', 'CLI-based store management'],
-      icon: 'shoppingCart',
-      icon_color: 'yellow'
-    },
-    {
-      id: 8,
-      title: 'Event Log Analyzer',
-      description: 'Created a Python-based analyzer to process, sort, and summarize user-machine logs.',
-      tech: ['Python', 'Object-Oriented Programming'],
-      features: ['Log processing and analysis', 'Data sorting and summarization', 'OOP and file handling for data reporting'],
-      icon: 'fileText',
-      icon_color: 'indigo'
-    }
-  ],
+  projects: {
+    'Web Applications': [
+      {
+        id: 1,
+        title: 'Pet Catalogue – React and Laravel Web App',
+        description: 'Developed a web application to catalogue and manage pets, featuring full CRUD capabilities with detailed birth/death tracking and dynamic pet statistics.',
+        tech: ['React', 'Laravel', 'TailwindCSS', 'SQLite', 'Laravel Blade'],
+        features: ['Full CRUD capabilities', 'Birth/death tracking', 'Dynamic pet statistics', 'Clean user interface'],
+        icon: 'database',
+        icon_color: 'blue'
+      },
+      {
+        id: 2,
+        title: 'Laravel LMS – Learning Management System',
+        description: 'Built a full-stack learning platform with role-based dashboards for teachers and students.',
+        tech: ['Laravel 12', 'SQLite', 'TailwindCSS', 'PHP'],
+        features: ['Role-based dashboards', 'Task assignment and evaluation flows', 'Secure authentication using Laravel Breeze'],
+        icon: 'graduationCap',
+        icon_color: 'purple'
+      },
+      {
+        id: 3,
+        title: 'Task Manager Pro',
+        description: 'Created a Flask-based to-do app with priority-based task filtering, due date tracking, and completion toggling.',
+        tech: ['Flask', 'Python', 'SQLite', 'Bootstrap', 'HTML/CSS'],
+        features: ['Priority-based task filtering', 'Due date tracking and real-time reminders', 'Detail view system for long tasks'],
+        icon: 'checkSquare',
+        icon_color: 'green'
+      }
+    ],
+    'Desktop Applications': [
+      {
+        id: 4,
+        title: 'Atmospheric Layer Simulation',
+        description: 'Simulated interactions between atmospheric layers under varying environmental influences using advanced OOP design.',
+        tech: ['C#', 'OOP', 'Simulation', 'Unit Testing'],
+        features: ['Advanced OOP design with design patterns', 'Visitor and Singleton pattern implementation', 'Modularity and scalability'],
+        icon: 'cloud',
+        icon_color: 'cyan'
+      },
+      {
+        id: 5,
+        title: 'Java Board Game Simulation',
+        description: 'Developed a custom Java board game with dynamic movement logic, player turns, and score management.',
+        tech: ['Java', 'Swing', 'JUnit 5'],
+        features: ['Dynamic movement logic and player turns', 'Score management', 'Unit-tested edge cases like board boundaries'],
+        icon: 'gamepad2',
+        icon_color: 'orange'
+      }
+    ],
+    'System Applications': [
+      {
+        id: 6,
+        title: 'Web Store Management System',
+        description: 'Designed a CLI-based store management system featuring product entry, cart updates, and file-based persistence.',
+        tech: ['C++', 'Dynamic Memory', 'File Handling'],
+        features: ['Product entry and cart updates', 'File-based persistence', 'CLI-based store management'],
+        icon: 'shoppingCart',
+        icon_color: 'yellow'
+      },
+      {
+        id: 7,
+        title: 'Event Log Analyzer',
+        description: 'Created a Python-based analyzer to process, sort, and summarize user-machine logs.',
+        tech: ['Python', 'Object-Oriented Programming'],
+        features: ['Log processing and analysis', 'Data sorting and summarization', 'OOP and file handling for data reporting'],
+        icon: 'fileText',
+        icon_color: 'indigo'
+      }
+    ],
+    'Static Websites': [
+      {
+        id: 8,
+        title: 'Vlera AI – Static Website',
+        description: 'Built a responsive and informative static website detailing the impact and applications of AI assistants.',
+        tech: ['HTML5', 'CSS', 'Bootstrap'],
+        features: ['Responsive and informative design', 'AI assistant applications and impact', 'Modern static website'],
+        icon: 'brain',
+        icon_color: 'pink'
+      }
+    ]
+  },
   skills: {
     'Programming Languages': ['Java', 'Python', 'C', 'C#', 'C++', 'SQL', 'JavaScript', 'HTML', 'CSS', 'PHP', 'Clean', 'Haskell'],
     'Web Development': ['React', 'Laravel', 'Flask', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'Laravel Blade'],
@@ -615,48 +623,57 @@ function App() {
            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center gradient-text mb-8 sm:mb-12 lg:mb-16">
              Projects
            </h2>
-           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-             {portfolioData.projects?.map((project) => {
-               const IconComponent = getProjectIcon(project.icon);
-               return (
-                 <div key={project.id} className="glass hover-lift p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
-                   <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                     <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-glow`}>
-                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
-                     </div>
-                     <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">
-                       {project.title}
-                     </h3>
-                   </div>
-                   <p className="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6">
-                     {project.description}
-                   </p>
-                   <div className="space-y-3 sm:space-y-4">
-                     <div>
-                       <h4 className="text-white font-semibold mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Technologies</h4>
-                       <div className="flex flex-wrap gap-1 sm:gap-2">
-                         {project.tech.map((tech, index) => (
-                           <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs sm:text-sm">
-                             {tech}
-                           </span>
-                         ))}
+           <div className="space-y-12">
+             {portfolioData.projects && Object.entries(portfolioData.projects).map(([category, projects]) => (
+               <div key={category} className="space-y-6">
+                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white border-b border-purple-500/30 pb-3">
+                   {category}
+                 </h3>
+                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                   {projects.map((project) => {
+                     const IconComponent = getProjectIcon(project.icon);
+                     return (
+                       <div key={project.id} className="glass hover-lift p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
+                         <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                           <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-${project.icon_color}-500 to-${project.icon_color}-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 icon-glow`}>
+                             <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
+                           </div>
+                           <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white">
+                             {project.title}
+                           </h3>
+                         </div>
+                         <p className="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6">
+                           {project.description}
+                         </p>
+                         <div className="space-y-3 sm:space-y-4">
+                           <div>
+                             <h4 className="text-white font-semibold mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Technologies</h4>
+                             <div className="flex flex-wrap gap-1 sm:gap-2">
+                               {project.tech.map((tech, index) => (
+                                 <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs sm:text-sm">
+                                   {tech}
+                                 </span>
+                               ))}
+                             </div>
+                           </div>
+                           <div>
+                             <h4 className="text-white font-semibold mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Features</h4>
+                             <ul className="space-y-1">
+                               {project.features.map((feature, index) => (
+                                 <li key={index} className="text-gray-300 text-xs sm:text-sm md:text-base flex items-center gap-2">
+                                   <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400 rounded-full"></span>
+                                   {feature}
+                                 </li>
+                               ))}
+                             </ul>
+                           </div>
+                         </div>
                        </div>
-                     </div>
-                     <div>
-                       <h4 className="text-white font-semibold mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Features</h4>
-                       <ul className="space-y-1">
-                         {project.features.map((feature, index) => (
-                           <li key={index} className="text-gray-300 text-xs sm:text-sm md:text-base flex items-center gap-2">
-                             <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400 rounded-full"></span>
-                             {feature}
-                           </li>
-                         ))}
-                       </ul>
-                     </div>
-                   </div>
+                     );
+                   })}
                  </div>
-               );
-             })}
+               </div>
+             ))}
            </div>
          </div>
        </section>
