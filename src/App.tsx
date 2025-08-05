@@ -157,9 +157,11 @@ const portfolioData = {
   ],
   skills: {
     'Programming Languages': ['Java', 'Python', 'C', 'C#', 'C++', 'SQL', 'JavaScript', 'HTML', 'CSS', 'PHP', 'Clean', 'Haskell'],
-    'Technologies & Interests': ['Docker', 'Kubernetes', 'Helm', 'Linux', 'Networking', 'Cryptography & Security', 'DevOps', 'Full Stack Development', 'Robot Framework', 'Game Development', 'GUI', 'Microservices', 'DBMS', 'Computer Graphics'],
     'Web Development': ['React', 'Laravel', 'Flask', 'TypeScript', 'TailwindCSS', 'Bootstrap', 'Laravel Blade'],
-    'Tools & Platforms': ['Git', 'GitHub', 'Docker', 'Kubernetes', 'SQLite', 'JUnit 5', 'Unit Testing']
+    'DevOps & Cloud': ['Docker', 'Kubernetes', 'Helm', 'Linux', 'Git', 'GitHub'],
+    'Database & Storage': ['SQLite', 'SQL', 'DBMS', 'File Handling'],
+    'Testing & Quality': ['JUnit 5', 'Unit Testing', 'Robot Framework'],
+    'Specialized Areas': ['Networking', 'Cryptography & Security', 'Computer Graphics', 'Game Development', 'GUI', 'Microservices']
   },
   certifications: [
     'Stipendium Hungaricum Scholarship (100%)',
