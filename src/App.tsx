@@ -53,7 +53,7 @@ const portfolioData = {
   },
   quickFacts: {
     'Education': 'BSc Computer Science',
-    'Experience': '2+ Years',
+    'Experience': '1 Year',
     'Projects': '8+ Projects',
     'Certifications': '13+ Certifications'
   },
@@ -87,20 +87,7 @@ const portfolioData = {
         'Provided mentorship and support for academic and personal development'
       ]
     },
-    {
-      title: 'Full-Stack Developer',
-      company: 'Freelance & Personal Projects',
-      location: 'Remote',
-      period: '2022 – Present',
-      type: 'Freelance',
-      description: 'Developing responsive web applications and full-stack solutions using modern technologies.',
-      responsibilities: [
-        'Developed responsive web applications using React, Laravel, and modern technologies',
-        'Implemented RESTful APIs and database design with SQLite and MySQL',
-        'Created user-friendly interfaces with TailwindCSS and Bootstrap',
-        'Deployed applications using Docker, Vercel, and various cloud platforms'
-      ]
-    }
+    
   ],
   projects: {
     'Web Applications': [
