@@ -52,35 +52,56 @@ const portfolioData = {
     ]
   },
   quickFacts: {
-    education: 'BSc Computer Science',
-    experience: '2+ Years',
-    projects: '8+ Projects',
-    certifications: '12+ Certifications'
+    'Education': 'BSc Computer Science',
+    'Experience': '2+ Years',
+    'Projects': '8+ Projects',
+    'Certifications': '13+ Certifications'
   },
   education: {
     degree: 'Bachelor\'s in Computer Science',
     institution: 'Eötvös Loránd University (ELTE), Hungary',
     period: 'Sep 2023 – Jul 2026',
+    gpa: '3.8/4.0',
     scholarship: 'Stipendium Hungaricum Scholarship (100%)',
     coursework: [
-      'Data Structures',
-      'Algorithms',
+      'Data Structures & Algorithms',
       'Object-Oriented Programming',
       'Software Development Methodologies',
-      'Computer Networks'
+      'Computer Networks & Security',
+      'Database Management Systems',
+      'Web Development & Design'
     ]
   },
-  experience: {
-    title: 'Student Mentor',
-    company: 'HOOK',
-    location: 'Budapest, Hungary',
-    period: 'Jul 2024 – Present',
-    responsibilities: [
-      'Guided international students in academic success and cultural integration throughout their studies in Hungary',
-      'Assisted with course selection, administrative processes, and adapting to student life abroad',
-      'Fostered a supportive and enriching environment to help students achieve both academic and personal goals'
-    ]
-  },
+  experience: [
+    {
+      title: 'Student Mentor',
+      company: 'HOOK',
+      location: 'Budapest, Hungary',
+      period: 'Jul 2024 – Present',
+      type: 'Part-time',
+      description: 'Guiding international students in academic success and cultural integration throughout their studies in Hungary.',
+      responsibilities: [
+        'Guided international students in academic success and cultural integration throughout their studies in Hungary',
+        'Assisted with course selection, administrative processes, and adapting to student life abroad',
+        'Fostered a supportive and enriching environment to help students achieve both academic and personal goals',
+        'Provided mentorship and support for academic and personal development'
+      ]
+    },
+    {
+      title: 'Full-Stack Developer',
+      company: 'Freelance & Personal Projects',
+      location: 'Remote',
+      period: '2022 – Present',
+      type: 'Freelance',
+      description: 'Developing responsive web applications and full-stack solutions using modern technologies.',
+      responsibilities: [
+        'Developed responsive web applications using React, Laravel, and modern technologies',
+        'Implemented RESTful APIs and database design with SQLite and MySQL',
+        'Created user-friendly interfaces with TailwindCSS and Bootstrap',
+        'Deployed applications using Docker, Vercel, and various cloud platforms'
+      ]
+    }
+  ],
   projects: [
     {
       id: 1,
@@ -163,21 +184,31 @@ const portfolioData = {
     'Testing & Quality': ['JUnit 5', 'Unit Testing', 'Robot Framework'],
     'Specialized Areas': ['Networking', 'Cryptography & Security', 'Computer Graphics', 'Game Development', 'GUI', 'Microservices']
   },
-  certifications: [
-    'Stipendium Hungaricum Scholarship (100%)',
-    'React JS – Meta',
-    'React Basics',
-    'React Advanced',
-    'Unsupervised Learning, Recommenders, Reinforcement Learning – Stanford Online',
-    'Introduction to Containers w/ Docker, Kubernetes & OpenShift – IBM',
-    'Java (Basic) – HackerRank',
-    'REST API (Intermediate) – HackerRank',
-    'SQL (Intermediate) – HackerRank',
-    'C# (Basic) – HackerRank',
-    'Crash Course on Python – Coursera',
-    'Introduction to Git and GitHub – Coursera',
-    'Web Design: Strategy and Information Architecture – Coursera'
-  ],
+  certifications: {
+    'Academic Excellence': [
+      'Stipendium Hungaricum Scholarship (100%)'
+    ],
+    'Frontend Development': [
+      'React JS – Meta',
+      'React Basics',
+      'React Advanced'
+    ],
+    'Programming & Development': [
+      'Java (Basic) – HackerRank',
+      'C# (Basic) – HackerRank',
+      'REST API (Intermediate) – HackerRank',
+      'SQL (Intermediate) – HackerRank',
+      'Crash Course on Python – Coursera'
+    ],
+    'DevOps & Tools': [
+      'Introduction to Containers w/ Docker, Kubernetes & OpenShift – IBM',
+      'Introduction to Git and GitHub – Coursera'
+    ],
+    'Machine Learning & Design': [
+      'Unsupervised Learning, Recommenders, Reinforcement Learning – Stanford Online',
+      'Web Design: Strategy and Information Architecture – Coursera'
+    ]
+  },
   contact: {
     email: {
       address: 'emanaftab2022@gmail.com',
@@ -545,28 +576,35 @@ function App() {
             Experience
           </h2>
           <div className="glass hover-lift p-8 sm:p-10 md:p-12 rounded-3xl">
-                         <div className="flex items-start gap-4 mb-6">
-               <BriefcaseIcon className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
-              <div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
-                  {portfolioData.experience?.title}
-                </h3>
-                <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-2">
-                  {portfolioData.experience?.company}
-                </p>
-                <p className="text-gray-400 text-sm sm:text-base md:text-lg font-mono">
-                  {portfolioData.experience?.period}
-                </p>
+                                     {portfolioData.experience?.map((exp, expIndex) => (
+              <div key={expIndex} className="mb-8 last:mb-0">
+                <div className="flex items-start gap-4 mb-4">
+                  <BriefcaseIcon className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
+                      {exp.title}
+                    </h3>
+                    <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-1">
+                      {exp.company}
+                    </p>
+                    <p className="text-gray-400 text-sm sm:text-base md:text-lg font-mono mb-2">
+                      {exp.period} • {exp.type}
+                    </p>
+                    <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-3">
+                      {exp.description}
+                    </p>
+                  </div>
+                </div>
+                <ul className="space-y-2 ml-10">
+                  {exp.responsibilities?.map((responsibility, index) => (
+                    <li key={index} className="flex items-start gap-3 text-gray-300 text-sm sm:text-base md:text-lg">
+                      <span className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></span>
+                      {responsibility}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-            <ul className="space-y-3">
-              {portfolioData.experience?.responsibilities?.map((responsibility, index) => (
-                <li key={index} className="flex items-start gap-3 text-gray-300 text-base sm:text-lg md:text-xl">
-                  <span className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></span>
-                  {responsibility}
-                </li>
-              ))}
-            </ul>
+            ))}
           </div>
         </div>
       </section>
@@ -669,11 +707,20 @@ function App() {
                 Professional Certifications
               </h3>
             </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              {portfolioData.certifications?.map((certification, index) => (
-                <span key={index} className="bg-purple-500/20 text-purple-300 px-4 py-3 rounded-lg text-sm sm:text-base md:text-lg">
-                  {certification}
-                </span>
+            <div className="space-y-6">
+              {portfolioData.certifications && Object.entries(portfolioData.certifications).map(([category, certifications]) => (
+                <div key={category} className="space-y-3">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-white border-b border-purple-500/30 pb-2">
+                    {category}
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {certifications.map((certification, index) => (
+                      <span key={index} className="bg-purple-500/20 text-purple-300 px-4 py-3 rounded-lg text-sm sm:text-base md:text-lg">
+                        {certification}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
